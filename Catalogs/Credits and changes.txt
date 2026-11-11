@@ -1,0 +1,30 @@
+OpenNGC attribution and changes
+
+Data downloaded October 24, 2026 from:
+https://github.com/mattiaverga/OpenNGC
+https://raw.githubusercontent.com/mattiaverga/OpenNGC/master/database_files/NGC.csv
+https://raw.githubusercontent.com/mattiaverga/OpenNGC/master/database_files/addendum.csv
+
+Copyright Mattia Verga and OpenNGC contributors. See OpenNGC-AUTHORS.txt.
+Data license: Creative Commons Attribution-ShareAlike 4.0 International.
+The full license is OpenNGC-LICENSE.txt.
+https://creativecommons.org/licenses/by-sa/4.0/
+
+NightLens changes:
+- Split all 13,970 source NGC/IC records into separate NGC.csv and IC.csv.
+- Converted CSV quoting / UTF-8 serialization; retained source columns/values.
+- Derived the Messier selection from cross-identifiers and the supplement.
+- Replaced the disputed M102 duplicate-M101 mapping in that derived Messier
+  selection with NGC5866, following NASA Hubble's Messier presentation:
+  https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-102/
+  The derived row documents this choice. Original NGC/IC values are kept.
+- Copied the complete 64-row supplement into its own selectable file.
+
+The derived catalog data files are also distributed under CC BY-SA 4.0.
+This data license does not change unrelated application-code licenses or
+those of Astronomy Engine and the Unicode time zone mapping.
+
+OpenNGC acknowledges NASA/IPAC NED, HyperLEDA, SIMBAD (CDS, Strasbourg), HEASARC,
+and Harold Corwin's NGC/IC positions and notes. Row-level Sources and notes
+are retained in the CSVs. Full upstream acknowledgments:
+https://github.com/mattiaverga/OpenNGC#data-sources

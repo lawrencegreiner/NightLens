@@ -1,0 +1,69 @@
+﻿ZWO DEVICE LIBRARY — reviewed October 24, 2026
+
+Gear > Equipment provides Smart telescope and Custom setup radio buttons.
+Custom setup offers Camera (the local ZWO list plus Other for any maker).
+Smart telescope offers four base Seestar models plus Other. Select Tele/Wide
+beside Shoot with on the dashboard only after choosing a multi-lens Seestar.
+Optics are editable in Custom setup; Other smart telescopes use a separate
+specifications dialog, then display read-only values in Equipment.
+
+Coverage: 91 camera entries, plus nine Seestar model/channel profiles.
+Seestar families: S50, S30, S30 Pro, S50 Pro and S30 Pro Eclipse Edition.
+Telephoto and wide channels use separate framing and exposure capabilities
+internally; they are not separate model choices in Equipment. Existing Eclipse
+Edition entries map to Seestar S30 Pro, with the lens preserved. Original S30
+wide selection requests missing manufacturer sensor dimensions before planning.
+Camera entries include current and legacy families, cooled/uncooled, mono/color,
+Mini, GT, Duo, Air and P25 revisions. Legacy denotes an older family, not a
+live assertion about inventory or support status. Coverage is dated; some early
+models and specialist revisions have incomplete verified specifications.
+
+Thirty camera entries have a numeric gain starting point supported by reviewed
+manufacturer materials. The remainder explicitly say numeric gain is unverified
+and permit a user-calibrated override. Unknown numbers are never borrowed from
+another sensor or model variant. HCG thresholds are not the same as unity gain,
+and a threshold alone is not an optimum setting for all exposure conditions.
+ASI Air and Duo refer to their main imaging sensor. Guide sensors do not replace
+the imaging sensor in the field-of-view calculation. SWIR exposure/integration
+is withheld because visible-light Bortle rules do not apply.
+
+Missing sensor dimensions are marked [specs needed]; enter them before saving.
+Selecting a device fills its known dimensions and clears the prior gain override.
+Selecting a Seestar also fills optics and defaults to Alt-Az; choose EQ only
+when configured that way on the actual telescope. Gains remain app-controlled.
+Original S50 accepts 10/20/30-second DSO exposures. Other models use conservative
+10-second starting choices, except original S30 wide, which needs manual data.
+Additional choices must be confirmed in the current app and shooting mode.
+Pro models enforce the manufacturer's 60-second upper bound for sky exposures.
+NightLens does not connect to a camera or change its capture settings.
+
+DATA FILE
+zwo-profiles.json is loaded locally at startup. Each entry has an immutable
+unique Id, Name, Kind (Camera or Smart telescope), sensor dimensions (mm), pixel
+size (micrometers), optional smart-telescope Focal/Aperture (mm), GainStart,
+GainGuidance, Notes, Source, VerifiedOn, Legacy, AllowedSubs (seconds) and MaxSub.
+null means not verified, not zero. Saved setups reference the Id; retain old IDs
+when editing. Do not set GainStart without verified model/read-mode evidence.
+Back up the file before editing and restart NightLens afterward. A malformed
+library shows an error in Equipment and leaves custom entry available.
+
+PRIMARY SOURCES
+Each row has its own Source URL. Sources were reviewed from ZWO's official
+product descriptions, manuals, current Seestar comparison and FAQ. Useful indexes:
+https://www.zwoastro.com/guides-and-manuals/
+https://www.zwoastro.com/wp-json/wc/store/v1/products?per_page=100&search=ASI
+https://helpdesk.zwoastro.com/hc/en-us/articles/48476700259213-Seestar-S30-S50-S50-Pro-S30-Pro-Comparison
+https://helpdesk.zwoastro.com/hc/en-us/articles/45339871550349-Seestar-Series-FAQ
+https://bbs.zwoastro.com/d/26065-seestar-s50-long-expose-is-not-visible
+
+Important differences called out in row Notes:
+- Current ASI585 Pro/Air HCG 200 vs older documents citing 252.
+- ASI678MC manual HCG 182; mono gain not copied from color.
+- ASI294MM dimensions describe default Bin2; Bin1 keeps the physical FOV.
+- P25, original Pro, Duo and Air remain separate model entries.
+- ASI990/991 SWIR dimensions use the official 2025 manual. The product heading
+  also names ASI992; that identifier remains partial, without guessed dimensions.
+
+This collection is not an automatic catalog subscription or a promise that all
+past/future revisions have full calibration. Unsupported specifications remain
+visible and editable rather than being presented as verified numbers.

@@ -1,0 +1,6 @@
+Crescent Nebula · NGC6888 | C:\Users\lawre\AppData\Local\NightLens\ObjectImages\A220FA9016445D01D795DA53.png | CDS / STScI DSS2 color composite; 30′ central field. https://alasky.cds.unistra.fr/DSS/DSSColor/properties
+Moon | C:\Users\lawre\Documents\ChatGPT\Astrophotography Programs\outputs\NightLens\Assets\Objects\Moon.jpg | NASA/JPL/USGS, Galileo Moon color photograph PIA00405 · https://images.nasa.gov/details/PIA00405
+NGC6910 | C:\Users\lawre\AppData\Local\NightLens\ObjectImages\41FE19E1AB2DD68117512AFB.png | CDS / STScI DSS2 color composite; 15′ central field. https://alasky.cds.unistra.fr/DSS/DSSColor/properties
+IC5068 | C:\Users\lawre\AppData\Local\NightLens\ObjectImages\1A62F500AC8D22D5FD3D5FD2.png | CDS / STScI DSS2 color composite; 60′ central field. https://alasky.cds.unistra.fr/DSS/DSSColor/properties
+Pelican Nebula · IC5070 | C:\Users\lawre\AppData\Local\NightLens\ObjectImages\8CA0E89A8121C2FAFADD4692.png | CDS / STScI DSS2 color composite; 90′ central field. https://alasky.cds.unistra.fr/DSS/DSSColor/properties
+North America Nebula · NGC7000 | C:\Users\lawre\AppData\Local\NightLens\ObjectImages\7E44588530B472BEBA9C32B9.png | CDS / STScI DSS2 color composite; 120′ central field. https://alasky.cds.unistra.fr/DSS/DSSColor/properties

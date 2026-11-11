@@ -1,0 +1,147 @@
+﻿NIGHTLENS 5.0 — CAPTURE GUIDANCE
+
+USING THE NEW GUIDANCE
+Each object card shows a difficulty marker, site Bortle estimate, starting
+sub-exposure, gain guidance and total accepted integration goal. Click any card
+for Capture plan, Notes & limits, and Sources tabs. All numbers are starting guidance,
+not a calibrated optimum or a guarantee of image quality / signal-to-noise.
+
+LIGHT POLLUTION
+Gear > Sky brightness (Bortle) opens the location-specific setting and a button
+to LightPollutionMap.app at the current coordinates. The initial Centennial
+sample is 39.5807, -104.8772: Bortle 8.9, SQM 17.88, shown by that site's UI on
+October 24, 2026 as an October 2026 estimate. It is a baseline model value,
+separate from the site's moonlight-adjusted night simulation. It is not an
+on-site reading. It is initially marked as an area estimate within 5 km of
+Centennial center, not a precise measurement at your telescope.
+
+The site's data endpoint rejected direct desktop requests. NightLens therefore
+does not claim automatic map synchronization. Open the map, verify your actual
+observing site, and enter/confirm its Bortle and optional SQM. Confirmed entries
+apply within 0.5 km. Moving elsewhere with Windows Location will not reuse an
+out-of-range sample. Multiple site samples are retained. Bortle 0 means unset;
+unknown sky brightness does not produce an invented total-time goal.
+
+SQM is recorded as source context, not used as a calibrated sensor-noise model.
+Bortle is the input for the approximate plan tiers described below. Moonlight,
+target altitude, haze, filter bandwidth, target surface brightness, sensor QE,
+read noise and full well also matter. A single Bortle class cannot specify the
+exact exposure and gain. Calibrated tools such as SharpCap's measured sky / sensor
+analysis can refine the plan.
+
+BEGINNER MARKER
+The star plus 'Beginner-friendly' is an equipment/sky heuristic, not a universal
+catalog designation. Bright, sufficiently large clusters and selected accessible
+targets can qualify when they fit one frame and are at least 40 degrees high.
+In bright urban skies, the mark is more restrictive for faint broadband targets.
+The Moon uses lunar-mode guidance. Unmarked objects may be more demanding or
+simply not rated by this heuristic. A star never promises success in clouds.
+
+EXPOSURE AND GAIN LIMITS
+Seestar S50 is recognized separately from S50 Pro. Official Seestar support
+documents 10, 20 and 30 second deep-sky choices. NightLens uses only those
+choices for the S50. Its Alt-Az starting plan uses 10 seconds; EQ plans
+may use 20/30 for appropriate targets, sky brightness and filters. Return to
+10 seconds if tracking/rejected frames or clipping require it. The S50's gain
+is app-controlled, never a manual recommendation. Lunar/planet modes use
+their own short/auto controls instead of the deep-sky sub-exposure list.
+
+Choose Smart telescope in Equipment, then select a Seestar model or Other.
+Select the optical channel beside Shoot with on the dashboard when shown. Enter only the exposure durations your current
+telescope app actually offers. Original S50 accepts only 10/20/30 s. Pro model
+profiles allow confirmed additional durations up to 60 s; the full set of app
+choices is not inferred from a maximum. Conservative defaults are 10 s, except
+the unverified original S30 wide channel, which needs manual specifications.
+The planner chooses from that list; an empty list produces a request for those
+capabilities, not a guessed exposure. Gain remains app-controlled. The app does
+not infer another model's limits from Seestar S50 or S50 Pro limits.
+
+For ASI585MC Pro, the starting gain is 200, following ZWO's current HCG product
+specification as checked October 24, 2026. Older materials cite 252: verify your
+installed driver/firmware. Gain is not increased automatically with Bortle.
+Avoid clipping bright stars/cores; inspect test frames and use shorter subs or
+an appropriate lower-gain setting if the driver/calibration calls for it.
+Unknown cameras get a request to use a calibrated camera preset.
+
+The conventional-camera sub-exposure heuristic starts at 90/60/30/15 seconds
+for Bortle <=3 / <=5 / <=7 / >7. It scales by a bounded focal-ratio factor and
+can increase for filtered emission targets. Bright clusters and Orion's bright
+core limit the starting duration. Conventional tracked subs are capped at 180s,
+Alt-Az starts are capped at 10s, and an untracked tripod gets a <=1s test-frame
+suggestion. An unspecified mount must be configured. These are cautious test
+plans, not calculations proving the sky background dominates read noise.
+
+TOTAL ACCEPTED INTEGRATION
+The ranges are practical initial goals. They do not represent a requested
+signal-to-noise threshold and cannot predict image quality:
+  Bright cluster: 0.3–0.8 h reference goal
+  Orion bright-core target: 0.5–1.5 h
+  Reflection/dark nebula: 3–6 h
+  Other emission / planetary nebula / SNR: 1.5–3 h
+  Other broadband target: 2–4 h
+
+A bounded focal-ratio factor (f/5 reference, 0.5–3x) scales these goals. For
+broadband non-cluster targets the Bortle <=3 / <=5 / <=7 / >7 factors are
+1 / 1.5 / 2.5 / 4. For clusters the factor is 1 + max(0,Bortle-4)*0.15;
+filtered emission targets use 1 + max(0,Bortle-4)*0.16. Ranges are rounded up
+to quarter hours for presentation. They may be accumulated over several nights.
+They count retained exposure only: rejected frames, dithering, slews, download
+time and overhead do not count. Moon/planet capture uses short video guidance,
+not hours of deep-sky exposure. Bright Moon and a poor match between a dark/dust
+target and an urban site are flagged in Notes. A darker site may be preferable
+to extending a broadband session indefinitely.
+
+DEDUPLICATION AND GROUPED REGIONS
+Explicit catalog aliases now normalize case, spacing and leading zeros and are
+joined across selected files. The Eastern Veil's NGC6992 and NGC6995 entries are
+also consolidated into one imaging-region card, preserving both identifiers.
+These are distinct catalog components, not literally the same catalog object.
+The grouped region uses a conservative approximate 70 x 25 arcminute footprint;
+verify exact framing. Western Veil remains a separate recommendation. Nearby
+unrelated targets are not merged just because they are close together.
+
+SOURCES
+User-selected light-pollution source and its model explanations:
+https://lightpollutionmap.app/?lat=39.5807&lng=-104.8772&zoom=12
+https://lightpollutionmap.app/about-data/
+Official Seestar support, exposure choices in Stargazing mode:
+https://bbs.zwoastro.com/d/26065-seestar-s50-long-expose-is-not-visible
+Seestar S50 controls / built-in filters / model distinctions:
+https://helpdesk.zwoastro.com/hc/en-us/articles/45339871550349-Seestar-Series-FAQ
+Current ASI585MC Pro HCG threshold:
+https://www.zwoastro.com/product/asi585mc-mm-pro/
+Measured-sky / sensor approach to exposure planning:
+https://docs.sharpcap.co.uk/4.0/15_SmartHistogram.htm
+
+
+
+ZWO LIBRARY AND MODEL-SPECIFIC GAIN (VERSION 6)
+The local library contains 91 camera entries and nine Seestar optical profiles.
+Thirty camera entries have documented numeric HCG starting guidance. Unknown
+values stay explicitly unverified; camera users can save their calibrated gain
+override per equipment setup. Seestar gain is always app-controlled. ASI Air
+and Duo profiles use the imaging sensor and allow camera gain controls.
+
+HCG thresholds are not unity gain and are not automatically scaled by Bortle.
+Color/mono, Pro/uncooled and read-mode variants can differ. Existing ASI585MC
+Pro setups map to gain 200; earlier 252 documentation is called out in notes.
+ASI678MC uses its manual's 182 threshold; the mono variant stays unverified.
+Model source URLs and review dates are in EquipmentLibrary/zwo-profiles.json.
+Specialist ASI990/991/992 SWIR profiles withhold visible-light Bortle-based
+exposure, integration and beginner guidance.
+
+Changing a selected model clears the previous model's gain override. Custom
+sensor dimensions remain editable; missing dimensions block saving until set.
+The original S30 wide camera is offered explicitly with missing specifications,
+rather than silently borrowing the tele camera's sensor. The library is local
+and dated, with no automatic online update or camera-control connection.
+
+SETUP TYPE AND LENS (VERSION 6.1)
+Camera and Mount are generic labels. Custom setup supports any maker through
+Camera > Other, manual model/specifications and an optional calibrated gain.
+Smart telescope > Other uses a separate specifications dialog and app exposure
+choices. All smart-telescope gain remains app-controlled.
+The dashboard lens selector appears only for a selected multi-lens Seestar.
+Changing lens replaces optics/sensor dimensions and recalculates target framing
+and capture guidance. Lens choice persists. Original S30 Wide requires verified
+manual sensor dimensions before its first plan; cancelling retains the old lens.

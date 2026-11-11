@@ -1,0 +1,27 @@
+﻿NIGHTLENS OFFLINE SKY MAP DATA
+
+5044 stars through apparent magnitude 6, 150 constellation line chains and
+89 label positions (including split Serpens) adapted into stars.json from:
+https://github.com/ofrohn/d3-celestial
+https://github.com/ofrohn/d3-celestial/tree/master/data
+
+Copyright (c) 2015, Olaf Frohn. BSD-3-Clause license: see License.txt.
+Upstream readme.md is retained with detailed original data provenance.
+Stars: XHIP, An Extended Hipparcos Compilation (Anderson & Francis, 2012),
+VizieR V/137D. Names/designations: VizieR IV/27A and upstream name records.
+Constellation positions/lines: IAU-based d3-celestial data, modified by Olaf
+Frohn. Only English/common labels and required numerical fields are retained.
+
+Modifications for NightLens: converted GeoJSON points into compact JSON;
+normalized right ascension to 0–360 degrees; retained apparent magnitude,
+selected common/Bayer names, line chains and English constellation labels.
+Positions remain J2000. No invented stars or decorative random points are used.
+
+The application draws a target-centered gnomonic projection, north up / east
+left. Field width defaults to 60 degrees; the mouse wheel changes it from 15
+to 90 degrees. Double-click opens the larger map. Moon/planet centers use
+Astronomy Engine topocentric J2000 coordinates at the displayed best time.
+The map is for finding the region, not precision mount alignment. It omits
+proper motion updates, terrain/horizon obstructions and atmospheric refraction.
+It works offline. Background stars do not represent the current naked-eye
+visibility under your local Moon/cloud/light-pollution conditions.

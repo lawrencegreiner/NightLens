@@ -1,0 +1,88 @@
+﻿VERSION 7.2 IMAGE AND MAP UPDATE
+
+Deep-sky images: CDS/P/DSS2/color, a color composite of red and blue DSS2 data.
+1200 x 1200 pixel cutouts from CDS HiPS2FITS; reference field 15–120 arcminutes.
+https://alasky.cds.unistra.fr/hips-image-services/hips2fits
+https://alasky.cds.unistra.fr/DSS/DSSColor/properties
+Digitized Sky Survey — STScI/NASA; colored and HEALPix-organized by CDS.
+HiPS copyright: CNRS/Unistra; HiPS license: ODbL-1.0. Full upstream survey
+acknowledgment and license metadata are retained in CDS DSS2 color properties.txt.
+No synthetic or AI-generated object photographs are used.
+
+Moon: NASA/JPL/USGS, Galileo color reference, PIA00405 (December 7, 1992).
+https://images.nasa.gov/details/PIA00405
+https://science.nasa.gov/resource/earths-moon/
+Moon and planet images were retrieved from NASA original-JPEG assets and
+reduced only when larger than 1800 pixels on the longest side, preserving
+aspect ratio. The previous low-resolution monochrome lunar image is replaced.
+Color composites can differ from visual eyepiece appearance; phase and viewing
+geometry are historical. Venus remains a labeled radar-derived rendering.
+
+Offline map: XHIP-based d3-celestial data, Olaf Frohn, BSD-3-Clause.
+https://github.com/ofrohn/d3-celestial
+See StarCatalog/License.txt, Read me.txt and Upstream readme.md for attribution.
+The map contains 5044 cataloged stars and real constellation line chains.
+
+The following earlier-release provenance also documents the underlying DSS
+surveys and planetary source IDs; the version 7.2 changes above supersede the
+old grayscale-cutout method and LRO lunar thumbnail.
+
+NIGHTLENS 7 — OBJECT INFORMATION AND REFERENCE IMAGES
+
+CATALOG DATA
+OpenNGC by Mattia Verga and contributors, CC BY-SA 4.0.
+https://github.com/mattiaverga/OpenNGC
+https://github.com/mattiaverga/OpenNGC/blob/master/NGC_guide.txt
+The bundled catalog credits/license remain in Catalogs. This release retains
+V/B/J/H/K magnitudes, B-band mean surface brightness, morphology and catalog
+notes through cross-catalog merging. Missing values are not synthesized.
+For custom catalogs, Magnitude without a named band stays band unspecified.
+Angular size is the catalog major/minor extent, not a measured live diameter.
+Descriptions combine object classification and computed constellation with
+brief general explanations; they are not invented object-specific histories.
+
+EPHEMERIDES
+Astronomy Engine by Don Cross, MIT license (source/license in Source).
+https://github.com/cosinekitty/astronomy
+J2000 catalog positions are precessed for altitude calculations; moving bodies
+use topocentric apparent coordinates of date. Surface refraction uses the
+library's normal model. Terrain/trees and an exact local atmospheric profile
+are not modeled. Refined best time is the highest 1-minute altitude sample near
+the coarse best sample inside the uninterrupted recommended window.
+
+DIGITIZED SKY SURVEY
+Online deep-sky cutouts: STScI / Digitized Sky Survey, DSS2 red.
+https://archive.stsci.edu/dss/
+https://gsss.stsci.edu/Software/WebServices.htm
+https://archive.stsci.edu/dss/faq.html
+https://gsss.stsci.edu/Acknowledgements/DSSCopyrights.htm
+DSS images were produced at the Space Telescope Science Institute under
+U.S. Government grant NAG W-2166. Survey plates originate from the Palomar
+Observatory Sky Survey and UK Schmidt Telescope surveys. Underlying plate
+copyright holders vary; see the STScI acknowledgment and copyright pages.
+This personal astronomy planner requests images on demand and caches them
+locally. The package does not bulk-redistribute survey images. Survey cutouts
+are historical reference fields with no guaranteed match to a user's camera
+orientation, filters, exposure or displayed apparent sky brightness.
+
+BUNDLED SOLAR-SYSTEM REFERENCE IMAGES
+Moon: NASA Lunar Reconnaissance Orbiter / Scientific Visualization Studio,
+full-Moon mosaic assembled from LRO NAC photographs.
+https://science.nasa.gov/resource/moon-mosaic/
+https://svs.gsfc.nasa.gov/5001
+Source asset:
+https://assets.science.nasa.gov/dynamicimage/assets/science/psd/earths-moon/outreach-materials/NASA-LRO-Moon-mosaic.png?fit=contain&h=500&w=500
+
+Jupiter: NASA/JPL/Space Science Institute, Cassini PIA02873.
+https://images.nasa.gov/details/PIA02873
+Saturn: NASA/JPL/Space Science Institute, Cassini PIA11141.
+https://images.nasa.gov/details/PIA11141
+Mars: NASA/JPL/USGS, Viking PIA00407, global color mosaic.
+https://images.nasa.gov/details/PIA00407
+Venus: NASA/JPL, Magellan PIA00271, radar-derived surface rendering.
+https://images.nasa.gov/details/PIA00271
+Venus is explicitly labeled as a radar rendering, not an optical photograph.
+Planet thumbnails were retrieved from the corresponding NASA Image and Video
+Library small-JPEG assets. Pictures are reference views; Moon phase, planetary
+rotation, viewing geometry and apparent size differ from tonight's live sky.
+Image credits are accessible in the app through Object data & sources.

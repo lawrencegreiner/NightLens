@@ -1,0 +1,355 @@
+﻿NIGHTLENS 8.0 — Windows astrophotography dashboard
+
+OBSERVING VERDICT AND DETAILED WEATHER (VERSION 8.0)
+The three old condition cards are replaced by a single observing-verdict banner.
+It shows GO, MARGINAL, NO-GO or LIMITED DATA, the main reasons, cloud/seeing/
+transparency/wind/dew summaries, the astronomical-dark window and the Moon.
+Double-click anywhere in the banner to open Conditions and Moon & darkness.
+
+Conditions includes total/low/mid/high cloud, wind/gust/direction, air/dew/feels-
+like temperatures, dew-point spread, humidity/trend, pressure/trend, visibility,
+precipitation and probability, seeing, transparency, Bortle and saved SQM.
+Moon & darkness includes illumination, moonrise/set, approximate Moon-free
+intervals, dark length, phase trend, sunset/rise and civil/nautical twilight.
+
+Hourly forecast now opens a single table with time, cloud, air temperature,
+dew point, humidity, wind, gusts and weather status. Units follow the existing
+Fahrenheit/mph setting. Rows are model hours overlapping astronomical darkness;
+repeated local times at DST changes include UTC offsets. Missing fields remain
+Not forecast. See Weather data and verdict rules.txt for sources, aggregation,
+classification thresholds and interpretation of estimates.
+
+IMAGE LOADING RELIABILITY (VERSION 7.4)
+Selecting a new equipment setup can produce uncached targets. Color pictures
+now try the independent CDS mirror if the primary image server times out or
+returns an unusable image. Requests allow 30 seconds per server and keep the
+interface responsive. Completed pictures are applied on the UI thread.
+
+A visible failed picture automatically retries after 20 seconds, up to three
+attempts. Click the failed-picture message to retry immediately; this action
+only reloads the picture and does not open a larger view. Messages distinguish
+timeouts, server errors and unreachable services rather than assuming you are
+offline. Repeated repaints share pending downloads instead of duplicating them.
+
+The cache is validated before use. Incomplete or corrupt cached images are
+replaced after a fresh successful download. Downloads save to a unique temporary
+file and become visible in the cache only when complete. Download errors are
+recorded in ObjectImages/image-errors.log under the NightLens user-data folder.
+Your equipment and observing settings are retained.
+
+SIMPLIFIED TARGET VIEW (VERSION 7.3)
+The Full object data and Image source buttons are removed. Capture plan is
+the only action button below the target notes. Double-click enlargement is
+removed for the reference picture and altitude trajectory. The sky map still
+opens its larger view on double-click, with the same zoom controls.
+Image credits remain in Object data and image sources.txt and the package's
+source documentation. High-resolution color images and graph hover readouts
+remain available in the main target view.
+
+GRAPH, SKY MAP AND COLOR PICTURES (VERSION 7.2)
+Altitude/time annotations now sit in a dedicated header above the curve. The
+plot includes the full below-horizon trajectory, with adaptive vertical bounds,
+room for axis labels and no clipped line at the bottom. Time labels remain
+inside the control edges; crowded vertical labels are reduced automatically.
+The graph stays in the main view (enlargement removed in 7.3).
+
+The former compass has been replaced with an offline star map centered on the
+object, showing cataloged stars, bright-star labels and constellation lines.
+North is up and east is left. The target has an orange marker (red in Night
+mode). The map is a celestial locator, not a photograph or horizon view.
+Double-click to enlarge it; use the mouse wheel to zoom from 15 to 90 degrees.
+Stars use J2000 positions. Moving objects use topocentric J2000 coordinates at
+the displayed best time. StarCatalog contains the data credits and license.
+
+Deep-sky photos now request 1200 x 1200 pixel DSS2 color composites from CDS,
+with the original aspect ratio and resolution preserved in the image cache.
+Moon and planet references have been replaced with larger NASA color images
+(up to 1800 pixels on the longest side). The reference picture stays in the main view. Light/Dark preserve image color; Night still applies a
+red tint. New color image URLs have separate cache keys, so old grayscale
+thumbnails do not hide the upgrade. A network connection is needed initially
+for uncached deep-sky images. The visible field is labeled; large targets may
+extend beyond a central crop. Images are historical references, not live views.
+See Object data and image sources.txt for CDS/NASA and star-catalog credits.
+
+TARGET CONSOLE (VERSION 7.1)
+The object view now uses a three-column arrangement inspired by the supplied
+Clear Night Coach example: Why tonight and a large reference picture on the
+left, altitude trajectory and capture notes in the center, coordinates and
+photometry on the right. A compass view shows the object's real direction and
+height at the best time; it is not a chart of background stars.
+
+The altitude curve spans local noon to the following noon, with ten-minute
+samples and the refined best-time sample. A shaded background identifies the
+dark-sky interval; the dotted line marks the 30-degree imaging threshold.
+Move the pointer over the plot for local time and altitude. The three readouts
+below give altitude at dark start, best time and dark end. Heights below zero
+are below the horizon; the curve does not account for trees or terrain.
+
+Previous/Next still steps through only three recommended targets. Conditions
+and the Moon remain above the target console. Hourly forecast now opens a
+separate window so the three-column view has room without scrolling. The
+window opens up to 1280 x 860 pixels, constrained by the screen work area.
+Light/Dark/Night themes and the source/capture-plan buttons remain available.
+
+BEST OBJECTS (VERSION 7)
+The three highest-ranked eligible objects are shown one at a time, using
+Previous / Next. If fewer than three qualify, no filler objects are invented.
+Ranking still depends on the observing location, night, selected setup/lens,
+Moon and sky brightness, independent of current weather or time of day.
+
+Each object has a reference picture, a short description based on its catalog
+classification/constellation, coordinates, brightness information, capture-plan
+summary and an altitude timeline. The curve and its readouts show heights above the horizon through the day
+and night. Negative heights explicitly mean below the horizon. Local weekday/time is
+shown across midnight. The best time is refined to one-minute samples within
+the recommended visibility window. The timeline is a sequence of sample values,
+not a forecast of seeing or clouds; trees and terrain are not included.
+
+Deep-sky RA/Dec use catalog J2000 coordinates. Moon/planet positions are apparent
+topocentric coordinates of date at the displayed best time. Object data & sources
+also shows azimuth, all available V/B/J/H/K photometry, angular size, catalog
+notes and morphology. V is visual-band magnitude, B is blue-band magnitude,
+and J/H/K are near-infrared bands. Lower magnitude means brighter. Mean surface
+brightness is a separate B-band measurement in mag/arcsec², not total magnitude.
+Missing catalog measurements remain explicitly missing. Solar-system magnitudes
+are Astronomy Engine model estimates for the best time.
+
+Deep-sky reference pictures load asynchronously from STScI's Digitized Sky Survey
+(DSS2 red) at the object's J2000 position, in a labeled 15–60 arcminute central
+field. Large objects may extend beyond this reference picture; framing advice
+uses the equipment sensor and catalog extent. Survey images are historical,
+not live sky views or a promise of the result from your equipment. An initial
+internet connection is needed; successfully loaded images are cached under the
+NightLens user-data folder for offline reuse. If retrieval fails, text remains
+usable and a missing-image message is shown. Visible failed pictures retry automatically at 20-second intervals up to
+three attempts, with immediate manual retry by clicking the failure message. Moon and planet reference photos are bundled.
+Night mode tints reference pictures red. Image source opens the credited source.
+See Object data and image sources.txt for the full data/image credits.
+
+EQUIPMENT WORKFLOW (VERSION 6.1)
+Gear > Equipment starts with Smart telescope or Custom setup radio buttons.
+The generic Camera and Mount labels apply to any maker, and taller input rows
+reserve space for text descenders and the complete input border.
+
+Smart telescope offers Seestar S30 Pro, Seestar S30, Seestar S50, Seestar S50 Pro,
+and Other. The four named models use read-only optics in Equipment. For an
+unlisted smart telescope, choose Other, enter its model name, and use Enter
+telescope specifications to provide its optics/sensor dimensions. Confirm its
+app-supported exposure choices; gain stays app-controlled.
+
+Custom setup offers a Camera dropdown with the 91 current/legacy ZWO camera
+entries plus Other. Choose Other to enter a camera from any maker. Focal length,
+aperture, sensor width and sensor height are editable in Custom setup. Numeric
+gain overrides remain available for cameras, with model-specific guidance where
+verified. A known camera selection fills sensor dimensions automatically.
+
+On the dashboard, Shoot with lists the saved setup names. A Lens dropdown appears
+only for a selected multi-lens Seestar. Choose Tele or Wide there; framing,
+recommendations and the capture plan recalculate for the lens and save the choice.
+The S50 and custom setups do not show a lens selector. The original S30 wide
+sensor lacks verified dimensions in this library; first selection asks for the
+manufacturer's dimensions before a plan is calculated. Cancel preserves the
+previous lens. Existing special-edition profiles map to their base Seestar model.
+
+The local EquipmentLibrary/zwo-profiles.json retains nine internal lens/revision
+profiles for calculation and compatibility; these are not nine model choices in
+the Equipment selector. Thirty camera entries have documented numeric HCG gain
+starting points; other entries explicitly require calibration or a user override.
+Source URLs and review dates remain available via Model source. Existing saved
+setups are retained. Changing a device resets the previous gain override.
+
+Original S50 exposures remain limited to 10/20/30 seconds. Pro profiles enforce
+60 seconds as the documented ceiling; additional exact durations must be confirmed
+in the app. No camera/telescope capture settings are changed by NightLens.
+See EquipmentLibrary/Read me.txt and Capture guidance.txt for coverage and limits.
+
+CAPTURE WINDOW FIX (VERSION 5.1)
+Capture plan, Notes & limits and Sources now use fully themed section buttons and a
+borderless content panel. The native white/gray tab strip and bright frame have
+been removed. Night mode uses red text, red buttons, red badges and red accents
+on near-black backgrounds throughout the client area; it no longer uses amber
+or orange text. The gear also turns red in Night mode.
+APPEARANCE (VERSION 5)
+Gear > Appearance selects Light, Dark, or Night (red). Dark is the default
+for existing settings that have no saved appearance. Your choice is saved.
+The palette applies to the dashboard, settings, plan tabs, menus, inputs and
+navigation buttons. Disabled navigation remains readable. Night uses subdued
+red tones on near-black backgrounds rather than amber or white dashboard text.
+
+Beginner-friendly objects now have a prominent star-and-text badge at the
+upper right of their cards. Light/Dark use a green badge; Night uses a red
+badge. The text and star keep its meaning clear without relying on color.
+NEW IN VERSION 4
+Object cards now show a beginner star when appropriate, a Bortle-aware starting
+exposure, gain guidance and total accepted integration range. Click a card for
+the full plan, notes and sources. Gear > Sky brightness (Bortle) lets you
+confirm the map estimate at your current location. Centennial starts with a
+Bortle 8.9 area estimate from LightPollutionMap.app, not an on-site measurement.
+There is no automatic map synchronization; open the map and confirm/update the
+site value. See Capture guidance.txt for limits, sources and all plan rules.
+Seestar S50 suggestions use only 10/20/30 s deep-sky options; gain stays controlled
+by the app. Other smart telescope profiles require their actual app choices.
+Eastern Veil components now share one card, with both identifiers preserved.
+Cross-catalog alias matching also accounts for spacing/case/leading-zero variants.
+START
+Double-click NightLens.exe or the NightLens desktop shortcut. Keep the Catalogs
+and EquipmentLibrary folders beside NightLens.exe when moving the app. No installer, account, API key,
+Python or Node is needed. Your existing equipment/location settings are retained.
+
+DASHBOARD
+The wider view puts conditions, seeing, clouds, temperature, wind, dew risk,
+Moon phase/rise/set, darkness, equipment selection, targets and hourly forecasts
+on one screen without a scrollbar. Use Next/Previous to page through targets
+and Earlier/Later to page through forecast hours. Best Objects shows one of
+three recommendations at a time. It opens up to 1280 x 860 pixels, constrained
+by your screen work area, with no dashboard scrollbar.
+
+SETTINGS
+The gear opens Location, Sky brightness (Bortle), Equipment, Catalogs, Keep on top and
+About & data sources. Location and Equipment use wider, shorter layouts with
+visible Save buttons. The Equipment assumptions paragraph has been removed.
+
+LOCATION
+Windows Location is enabled by default and respects Windows location access.
+If unavailable, the saved fallback is used, initially Centennial, Colorado.
+Automatic detection never overwrites your saved fallback. City search offers
+multiple matches. You can set manual coordinates/time zone and temperature
+units. The Windows Settings button opens the Location page; the app does not
+change Windows privacy settings. In automatic mode the forecast service supplies
+the observing time zone; if unavailable the computer time zone is used.
+
+EQUIPMENT
+Saved profiles are preserved. Initial defaults are Seestar S50 (250 mm focal
+length, 50 mm aperture, IMX462) and Askar 60F + ASI585MC Pro (408 mm, 60 mm).
+Add as many setups as you need. Reducers, Barlows, filters and mount modes can
+have separate profiles. Choose the actual mount mode for exposure guidance.
+Sensor size, focal length, aperture, tracking mode, nebula filter availability
+and mosaic preference inform suggestions. Verify framing in your capture app.
+
+SELECTABLE CATALOGS
+Gear > Catalogs lets you choose the separate local files used for planning:
+  Messier.csv     110 source entries; 110 coordinate-valid entries
+  NGC.csv       8,373 source records; 8,098 coordinate-valid entries
+  IC.csv        5,597 source records; 5,210 coordinate-valid entries
+  Supplement.csv  64 source records;    63 coordinate-valid entries
+
+These contain all downloaded OpenNGC NGC/IC records and its supplement, plus a
+Messier selection derived from those data. They do not claim to include every
+astronomical catalog ever published. Additional catalogs can be imported.
+
+With all supplied files selected, 13,365 unique coordinate-valid objects remain
+after cross-catalog deduplication. All source records stay in the files; invalid
+positions, duplicate historical entries and nonexistent objects cannot be
+planned and their counts are shown. Historical single/double stars are retained
+as catalog entries but excluded from deep-sky recommendations. Unknown sizes are
+marked as unknown rather than treated as a guaranteed framing fit.
+
+M102 uses NGC5866 in the derived Messier file, following NASA Hubble's Messier
+presentation. Its historical identification is disputed. The original NGC/IC
+records are preserved. See Catalogs/Credits and changes.txt.
+
+ADDING CATALOGS
+Choose Import catalog CSV in Catalog settings. Supported formats:
+- OpenNGC CSV, including its semicolon-delimited columns.
+- NightLens CSV with the case-sensitive columns:
+  Name,Type,RAHours,DecDegrees,MajorArcmin,MinorArcmin,Magnitude,CanonicalId
+
+The first six columns are required; Magnitude and CanonicalId are optional.
+Use J2000 RA in decimal hours (0 <= RA < 24), declination in decimal degrees
+(-90 through +90), and dimensions in arcminutes. Blank dimensions mean unknown.
+Blank brightness receives a conservative ranking penalty. Quote names containing
+commas. A shared CanonicalId deduplicates the same object across catalogs; when
+absent a coordinate-based key is used. Validation reports unusable rows.
+Source/CustomCatalog-template.csv provides the header without sample objects.
+
+Imported files are copied to %LOCALAPPDATA%\NightLens\Catalogs. Check the file
+and save to use it. Filename collisions are rejected; rename your file to keep
+both catalogs. You can also put compatible CSVs directly in the app's Catalogs
+folder and reopen catalog settings. No rebuilding or network access is needed
+for local catalogs. Obtain other named catalogs' data with coordinates and
+convert to one of these supported formats before importing them.
+
+RECOMMENDATIONS
+All selected valid objects are evaluated. The best three are shown individually based
+on full-night altitude above 30 degrees, darkness, framing, Moon separation and
+illumination, brightness preference, nebula filters and mosaic choice. Site Bortle adds a preference for urban-suitable targets. Clouds,
+rain, wind and seeing do not affect target ranking or suggested shooting times.
+Their forecasts appear as reference information. Catalog settings independently
+includes the Moon, Venus, Mars, Jupiter and Saturn. Framing and brightness are
+planning heuristics, not guarantees of detectability or exact composition.
+
+The automatic night is the active night before astronomical dawn and the upcoming
+night after dawn. The Night picker selects other dates for future planning.
+Plans always cover the entire dark-sky interval, even during daytime or after
+some of the night has passed. Shooting is assumed to begin at dark-sky time.
+Use 'Use current observing night' in the gear menu to reset the date picker.
+All times are local to the observing site.
+Darkness/visibility are sampled every 10 minutes. Moonrise/set assumes a level
+horizon at zero elevation; terrain changes practical visibility. Local trees,
+buildings, light pollution, guiding quality and camera orientation are not modeled.
+
+FORECASTS & CONTROLS
+Refresh updates immediately; automatic updates run every 30 minutes. Minimize
+hides the app in its system tray. Double-click the tray icon to restore it.
+Closing exits the app. Keep on top is in the small, unboxed yellow gear menu.
+Appearance offers Light, Dark and dim red Night palettes with readable navigation. Dropdowns reserve space for glyph descenders.
+A moon-and-lens icon is embedded in the EXE, taskbar, tray and all app windows.
+Seeing means atmospheric steadiness: smaller arcsecond values are better.
+Seeing comes from the astronomy forecast, never from surface wind alone.
+Weather requests include up to 16 forecast days plus the previous day. Seeing
+usually covers roughly three days. The app distinguishes an offline service,
+an out-of-range planning date, missing values and stale data. Forecasts are not
+invented. Target planning continues beyond the weather and seeing horizons.
+The former pre-noon expired-night empty-summary bug is fixed.
+Astronomy/catalog calculations continue offline. Weather
+is a model forecast, not an on-site measurement. There is no persistent cache.
+
+PRIVACY
+Coordinates go via HTTPS to Open-Meteo and 7Timer for forecasts. City searches
+go to Open-Meteo geocoding. No telemetry, ads, equipment uploads or app account.
+Settings are local in %LOCALAPPDATA%\NightLens\settings.json, with a backup.
+The free Open-Meteo endpoint is intended for personal, noncommercial use.
+
+CREDITS
+Open-Meteo weather/geocoding, CC BY 4.0:
+https://open-meteo.com/en/docs
+https://open-meteo.com/en/docs/geocoding-api
+https://creativecommons.org/licenses/by/4.0/
+7Timer! ASTRO, roughly three-hour seeing forecast intervals:
+https://github.com/Yeqzids/7timer-issues/wiki/Wiki
+Astronomy Engine, Don Cross, MIT; source and license included:
+https://github.com/cosinekitty/astronomy
+Unicode CLDR timezone mapping; Unicode license included:
+https://github.com/unicode-org/cldr
+OpenNGC, Mattia Verga and contributors, CC BY-SA 4.0:
+https://github.com/mattiaverga/OpenNGC
+Catalogs includes authors, license and changes for the derived CSV files.
+M102 mapping source:
+https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-102/
+
+BUILD & VERIFICATION
+Source/Build.ps1 builds on Windows 11, downloading Microsoft Roslyn 4.8.0 from
+NuGet into Source/.build if needed. Running the app requires no compiler.
+Close NightLens before rebuilding. Verification.txt records the checks.
+Preview images are test renders, not forecasts current when you view them.
+Version 8.0 — October 25, 2026. Unsigned personal application.
+
+
+
+
+
+
+
+CONDITION LABELS AND COLORS (5.2)
+Capture plan is the wording used throughout the app and guide.
+Seeing: good/excellent forecast bands 1-3 are green, fair bands 4-5 are amber,
+and poor bands 6-8 are red in Light/Dark themes. Cloud cover: 0-20% is green
+(Low), over 20 through 50% amber (Medium), and over 50% red (High). Missing
+values stay neutral rather than receiving a favorable or unfavorable color.
+Night mode preserves its red palette, using red shades with the same text and
+numbers. Both the main summary and hourly forecasts carry these color cues.
+Dew risk is High when temperature minus dew point is <=2 degrees C, Medium
+when >2 through 5 degrees C, and Low when >5 degrees C. Unknown data remains
+Not forecast. These are heuristic ambient-temperature bands; optics can cool
+below ambient, so Low does not guarantee that dew cannot form. Displaying
+Fahrenheit does not change the classification calculation.

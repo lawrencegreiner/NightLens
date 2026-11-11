@@ -1,0 +1,308 @@
+PASS: Live weather response parses with at least 72 hours
+PASS: Current conditions timestamp parses
+PASS: Fresh 7Timer response parses
+PASS: Centennial has astronomical darkness
+PASS: Moon illumination is bounded
+PASS: Moon rise and set calculated
+PASS: Moonrise belongs to observing night
+PASS: Targets ranked for Seestar
+PASS: Suggested targets above minimum altitude
+PASS: Suggested times begin in the dark-sky window
+PASS: Seestar field of view matches sensor and focal length
+PASS: Askar 60F field of view matches ASI585 sensor
+PASS: Askar profile produces targets
+PASS: Location time zone maps correctly
+PASS: DST repeated hour handled by time zone rules
+PASS: Southern hemisphere darkness works offline
+PASS: Polar summer correctly has no astronomical darkness
+PASS: Missing seeing never becomes an invented rating
+PASS: Out of range forecast is unavailable
+PASS: After midnight still uses the same observing night
+PASS: Stale seeing is rejected
+PASS: Multiple equipment profiles survive serialization
+PASS: Windows detection does not overwrite the saved fallback
+PASS: Additional equipment setup persists to disk
+PASS: Equipment editor rendered with both profiles
+PASS: Main window rendered successfully
+PASS: Four independent catalog files discovered
+PASS: Messier.csv parses without a catalog error
+CATALOG: Messier.csv — 110 source records; 110 coordinate-valid targets; 0 unplannable records
+PASS: IC.csv parses without a catalog error
+CATALOG: IC.csv — 5597 source records; 5210 coordinate-valid targets; 387 unplannable records
+PASS: NGC.csv parses without a catalog error
+CATALOG: NGC.csv — 8373 source records; 8098 coordinate-valid targets; 275 unplannable records
+PASS: Supplement.csv parses without a catalog error
+CATALOG: Supplement.csv — 64 source records; 63 coordinate-valid targets; 1 unplannable records
+PASS: All 110 Messier source entries are included
+PASS: All 13970 downloaded NGC/IC records are retained
+PASS: More than 13000 unique catalog objects available offline
+PASS: Cross-catalog canonical identifiers are deduplicated
+PASS: Catalog selection restricts library to Messier entries
+PASS: Disabled catalogs and solar-system objects cannot enter recommendations
+PASS: Empty catalog selection produces no hidden fallback targets
+PASS: Custom CSV handles quoted commas, validation and missing sizes
+PASS: Missing angular dimensions remain unknown
+PASS: Missing selected catalogs are reported explicitly
+PASS: Full catalog recommendation calculation completes in under 15 seconds
+PERFORMANCE: full catalog ranking 151 ms
+PASS: Recommendations are limited to three for the night
+PASS: Location settings input controls fit within window
+PASS: Location Save button is visible
+PASS: Equipment settings input controls fit within window
+PASS: Equipment assumptions paragraph removed
+PASS: Catalog settings input controls fit within window
+PASS: Dashboard has no scrolling container
+PASS: NightLens · Tonight's sky input controls fit within window
+PASS: Settings gear is available on the dashboard
+PASS: Daytime after dawn selects the upcoming night, not the expired night
+PASS: Daytime planning still returns targets
+PASS: Before dawn retains the active observing night
+PASS: Targets remain identical across daytime and nighttime views of the same night
+PASS: All shooting plans start no earlier than dark-sky time
+PASS: Full-night planning retains earlier windows instead of filtering by current time
+PASS: Clouds, rain, wind and seeing cannot alter target ranking
+PASS: Shooting times are based on visibility rather than weather
+PASS: Explicit future dates return targets without weather data
+PASS: Future weather outside coverage has an explicit range explanation
+PASS: Future seeing outside coverage has an explicit range explanation
+PASS: Service failures are distinguished from forecast range limits
+PASS: Morning dashboard no longer shows the expired-night empty state
+PASS: Planning date can be selected on the dashboard
+PASS: Settings uses an unboxed drawn gear rather than a boxed text glyph
+PASS: Future dashboard explains seeing coverage while retaining target cards
+PASS: NightLens · Tonight's sky has the NightLens window icon
+PASS: Dropdown reserves enough height for glyph descenders
+PASS: Location settings has the NightLens window icon
+PASS: Dropdown reserves enough height for glyph descenders
+PASS: Equipment settings has the NightLens window icon
+PASS: Dropdown reserves enough height for glyph descenders
+PASS: Dropdown reserves enough height for glyph descenders
+PASS: Dropdown reserves enough height for glyph descenders
+PASS: Catalog settings has the NightLens window icon
+PASS: Eastern Veil catalog components identified
+PASS: Eastern Veil appears once with both identifiers while Western Veil stays separate
+PASS: Recommended imaging regions have no repeated entries
+PASS: Alias identifiers normalize case, spacing and leading zeros
+PASS: Cross-catalog aliases merge even when primary identifiers differ
+PASS: Centennial model is labeled Bortle 8.9 area estimate
+PASS: Sky brightness from Centennial is not reused at a distant location
+PASS: Site brightness survives settings serialization
+PASS: Brighter broadband sky increases total-time goal and shortens starting subs
+PASS: ASI585MC Pro gain guidance follows current HCG 200 preset rather than scaling gain with Bortle
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B1, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B2, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B3, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B4, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B5, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B6, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B7, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B8, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B9, Alt-az / smart telescope)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B1, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B2, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B3, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B4, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B5, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B6, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B7, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B8, Equatorial / tracker)
+PASS: S50 plan stays in app-supported 10/20/30 s with app-controlled gain (B9, Equatorial / tracker)
+PASS: Other smart telescopes use only their entered app exposure options
+PASS: Unknown smart-telescope app capabilities do not get invented exposure options
+PASS: S50 lunar guidance uses its lunar mode rather than a 10-second DSO frame
+PASS: Suitable bright cluster receives a beginner star marker
+PASS: Missing site class requests input instead of fabricating total integration
+PASS: Bortle settings and capture plan rendered successfully
+PASS: Dew risk uses High/Medium/Low with correct boundary and missing-data behavior
+PASS: Cloud colors use the stated 20/50 percent boundaries and keep missing data neutral
+PASS: Seeing colors match the existing good/fair/poor forecast bands
+PASS: Light theme applies immediately to dashboard
+PASS: Light text, navigation and disabled navigation meet 4.5:1 contrast
+PASS: Light beginner badge has readable contrast
+PASS: Light condition colors meet 4.5:1 text contrast
+PASS: Light dashboard includes colored seeing and cloud values
+PASS: Light displays prominent beginner badges
+PASS: Light beginner badge fits the card top-right corner
+PASS: Light theme also applies to settings inputs
+PASS: Light capture guidance avoids native white tab strips and borders
+PASS: Light capture guidance uses the Capture plan heading
+PASS: Light capture guidance retains all three sections
+PASS: Light Capture plan section displays readable themed content
+PASS: Light Notes & limits section displays readable themed content
+PASS: Light Sources section displays readable themed content
+PASS: Dark theme applies immediately to dashboard
+PASS: Dark text, navigation and disabled navigation meet 4.5:1 contrast
+PASS: Dark beginner badge has readable contrast
+PASS: Dark condition colors meet 4.5:1 text contrast
+PASS: Dark dashboard includes colored seeing and cloud values
+PASS: Dark displays prominent beginner badges
+PASS: Dark beginner badge fits the card top-right corner
+PASS: Dark theme also applies to settings inputs
+PASS: Dark capture guidance avoids native white tab strips and borders
+PASS: Dark capture guidance uses the Capture plan heading
+PASS: Dark capture guidance retains all three sections
+PASS: Dark Capture plan section displays readable themed content
+PASS: Dark Notes & limits section displays readable themed content
+PASS: Dark Sources section displays readable themed content
+PASS: Night theme applies immediately to dashboard
+PASS: Night text, navigation and disabled navigation meet 4.5:1 contrast
+PASS: Night beginner badge has readable contrast
+PASS: Night condition colors meet 4.5:1 text contrast
+PASS: Night dashboard includes colored seeing and cloud values
+PASS: Night displays prominent beginner badges
+PASS: Night beginner badge fits the card top-right corner
+PASS: Night theme also applies to settings inputs
+PASS: Night capture guidance avoids native white tab strips and borders
+PASS: Night capture guidance uses the Capture plan heading
+PASS: Night capture guidance retains all three sections
+PASS: Night Capture plan section displays readable themed content
+PASS: Night Notes & limits section displays readable themed content
+PASS: Night Sources section displays readable themed content
+PASS: Night theme uses red rather than amber text and accents
+PASS: Appearance preference survives settings serialization
+PASS: 100 distinct device profiles load from the packaged library
+PASS: 91 camera entries and nine smart-telescope optical profiles available
+PASS: Every profile has a source, review date and gain guidance
+PASS: Numeric gain only provided for 30 documented entries
+PASS: Seestar S30 Pro Eclipse Edition — Tele never suggests adjustable gain
+PASS: Seestar S30 Pro Eclipse Edition — Tele exposure stays within confirmed choices and model maximum
+PASS: Seestar S30 Pro Eclipse Edition — Wide never suggests adjustable gain
+PASS: Seestar S30 Pro Eclipse Edition — Wide exposure stays within confirmed choices and model maximum
+PASS: Seestar S30 Pro — Tele never suggests adjustable gain
+PASS: Seestar S30 Pro — Tele exposure stays within confirmed choices and model maximum
+PASS: Seestar S30 Pro — Wide never suggests adjustable gain
+PASS: Seestar S30 Pro — Wide exposure stays within confirmed choices and model maximum
+PASS: Seestar S30 — Tele never suggests adjustable gain
+PASS: Seestar S30 — Tele exposure stays within confirmed choices and model maximum
+PASS: Seestar S30 — Wide never suggests adjustable gain
+PASS: Seestar S50 never suggests adjustable gain
+PASS: Seestar S50 exposure stays within confirmed choices and model maximum
+PASS: Seestar S50 Pro — Tele never suggests adjustable gain
+PASS: Seestar S50 Pro — Tele exposure stays within confirmed choices and model maximum
+PASS: Seestar S50 Pro — Wide never suggests adjustable gain
+PASS: Seestar S50 Pro — Wide exposure stays within confirmed choices and model maximum
+PASS: ASI Air is an adjustable camera, not a fixed-gain smart telescope
+PASS: Camera gain override reaches the capture plan
+PASS: Device identity and gain override persist through settings serialization
+PASS: Selecting a new camera resets old gain override and updates framing dimensions
+PASS: Existing ASI585MC Pro setup maps to the model library without migration
+PASS: Color-model numeric gain is not copied to an unverified mono variant
+PASS: SWIR cameras do not receive visible-light Bortle exposure estimates
+PASS: Four Seestar models plus Other; generic camera selector includes Other
+PASS: Camera selector saves model specifications
+PASS: Custom setup exposes editable optics and sensor dimensions
+PASS: Equipment editor saves custom camera gain
+PASS: Input fits its preferred height and parent: TextBox
+PASS: Input fits its preferred height and parent: NumericUpDown
+PASS: Input fits its preferred height and parent: NumericUpDown
+PASS: Input fits its preferred height and parent: NumericUpDown
+PASS: Input fits its preferred height and parent: NumericUpDown
+PASS: Input fits its preferred height and parent: ComboBox
+PASS: Input fits its preferred height and parent: ComboBox
+PASS: Smart telescope mode hides camera/gain editors and displays read-only optics
+PASS: Smart telescope names do not expose lens or edition variants
+PASS: App-confirmed Pro exposure choices may reach documented 60 s maximum
+PASS: Pro exposure beyond documented 60 s maximum is rejected
+PASS: Original S50 cannot inherit Pro 60 s exposure setting
+PASS: Original S50 rejects unsupported intermediate exposure durations
+PASS: Other camera requires a model name and sensor dimensions
+PASS: Non-ZWO Other camera saves and remains a custom camera
+PASS: Other smart telescope requests separate specifications and keeps the main optics read-only
+PASS: Other smart telescope saves custom specifications with app-controlled gain
+PASS: Editing and cancelling preserves existing saved setups
+PASS: Lens switching updates framing while retaining the setup's model name
+PASS: Selected lens and optics persist across settings reload
+PASS: Existing special-edition profile maps to the four-model selector
+PASS: Manually confirmed original-S30 wide dimensions survive switching lenses
+PASS: Multi-lens smart telescope displays the main-screen lens selector
+PASS: Main-screen lens selection recalculates with the selected optics
+PASS: Single-lens S50 hides the lens selector
+PASS: Custom equipment hides the smart-telescope lens selector
+PASS: Other telescope specification dialog returns validated values
+PASS: Exactly three objects selected when enough targets qualify
+PASS: Altitude trajectory spans darkness and includes the best time
+PASS: Highlighted best altitude agrees with trajectory samples
+PASS: Trajectory heights and directions use the observer's astronomical coordinates
+PASS: Coordinate display carries seconds and preserves declination sign
+PASS: Photometric bands and surface brightness survive catalog merging
+PASS: B-only magnitude never gets mislabeled as V
+PASS: Missing photometric values are explicit rather than invented
+PASS: Coordinates identify the correct epoch for moving or fixed targets
+PASS: Object information includes classification, constellation, infrared bands and sources
+PASS: Color survey request uses explicit ICRS/J2000 catalog coordinates
+PASS: Deep-sky pictures request 1200-pixel color composites rather than grayscale cutouts
+PASS: Large objects get a clearly labeled central field within survey limits
+PASS: Moon reference image has at least 1000 pixels on its longest side
+PASS: Jupiter reference image has at least 1000 pixels on its longest side
+PASS: Saturn reference image has at least 1000 pixels on its longest side
+PASS: Mars reference image has at least 1000 pixels on its longest side
+PASS: Venus reference image has at least 1000 pixels on its longest side
+PASS: Previously fetched object photos remain available offline
+PASS: All object facts fit without clipping at minimum window size
+PASS: Reference photo does not overlap the object's facts
+PASS: Dashboard shows one best object at a time
+PASS: Object navigation shows one of three recommendations
+PASS: All object facts fit without clipping at minimum window size
+PASS: Reference photo does not overlap the object's facts
+PASS: Next changes the displayed object without adding cards
+PASS: All object facts fit without clipping at minimum window size
+PASS: Reference photo does not overlap the object's facts
+PASS: Next stops at the third object
+PASS: Altitude/time readout stays outside the plotted curve
+PASS: Entire altitude trajectory, including below-horizon samples, fits inside the graph
+PASS: Offline star catalog loads 5044 real stars and 150 constellation line chains
+PASS: Star map draws real stars and constellation lines around the selected target
+PASS: Selected object is centered accurately on the sky map
+PASS: Star map orientation is north up and east left
+PASS: Sky map opens an enlarged constellation view
+PASS: Altitude trajectory double-click no longer opens a window
+PASS: Reference image double-click no longer opens a window
+PASS: Altitude curve spans noon to noon with ten-minute samples
+PASS: Altitude curve uses the selected object and observing location
+PASS: Three-column view keeps the position readout and hourly forecast access
+PASS: Each object view includes a reference photo and altitude trajectory
+PASS: Hourly forecast opens a readable separate window with all hourly cards inside it
+PASS: Expanded object view keeps the dashboard free of scrollbars
+PASS: Pelican picture falls back to the independent mirror when the primary server times out
+PASS: Successful image fetch leaves no partial cache files
+PASS: Equipment changes reuse a complete cached image without another download
+PASS: Corrupt cached pictures are detected and replaced atomically
+PASS: Server timeouts report the actual problem rather than claiming the computer is offline
+PASS: Repeated paints do not repeatedly hit an unavailable image server
+PASS: An explicit retry bypasses the temporary failure cooldown immediately
+PASS: Image request starts asynchronously
+PASS: Switching equipment shares an in-progress download and cannot see a half-written cache file
+PASS: All waiting object views receive the completed picture
+PASS: Visible picture retries automatically after a temporary failure and updates without changing targets
+PASS: Failed photo offers an accurate message and click-to-retry action
+PASS: Clicking a failed photo reloads it without adding image enlargement
+PASS: Conditions cover the computed astronomical dark window
+PASS: Sunset, civil dusk, nautical dusk and astronomical dusk are ordered
+PASS: Astronomical dawn, nautical dawn, civil dawn and sunrise are ordered
+PASS: Hourly table includes only model hours overlapping darkness
+PASS: Moon-free intervals are constrained to darkness and Moon below horizon
+PASS: Precise and sampled darkness use the same geometric Sun-below-18-degree definition
+PASS: Temperature differences convert without adding Fahrenheit's 32-degree offset
+PASS: Clear, calm, dry hourly weather produces GO
+PASS: Heavy cloud produces NO-GO
+PASS: Broken cloud produces MARGINAL
+PASS: High rain chance prevents GO
+PASS: Strong wind prevents GO
+PASS: Small dew-point margin raises a caution
+PASS: High humidity raises a planning caution
+PASS: Missing weather never becomes invented good conditions
+PASS: Known severe conditions remain NO-GO even if optional gust data is missing
+PASS: Older forecast responses parse safely with optional fields absent
+PASS: Expanded live forecast parses gusts, cloud layers, feels-like and pressure
+PASS: 7Timer atmospheric transparency is parsed separately from seeing
+PASS: Repeated daylight-saving hours include distinct UTC offsets in the hourly table
+PASS: Light detailed conditions include metric cards and the full report
+PASS: Light Moon page includes moon-free windows, twilight and solar events
+PASS: Light hourly table includes dew point, humidity, wind, gust and status
+PASS: Dark detailed conditions include metric cards and the full report
+PASS: Dark Moon page includes moon-free windows, twilight and solar events
+PASS: Dark hourly table includes dew point, humidity, wind, gust and status
+PASS: Night detailed conditions include metric cards and the full report
+PASS: Night Moon page includes moon-free windows, twilight and solar events
+PASS: Night hourly table includes dew point, humidity, wind, gust and status
+PASS: Double-clicking the observing-verdict banner opens detailed conditions and Moon information
