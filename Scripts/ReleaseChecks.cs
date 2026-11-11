@@ -15,6 +15,7 @@ internal static class ReleaseChecks {
         try {
             Settings.Folder=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Source",".build","release-check-settings");
             var s=new Settings {WindowsLocation=false};
+            Check(s.SkySites[0].Source.Contains("\u00b7"),"UTF-8 source text survives release version stamping");
             string notice;var targets=CatalogLibrary.Load(s,out notice);
             Check(targets.Count==13365,"Bundled catalogs load and deduplicate to 13,365 targets");
             Check(targets.All(t=>t.Ra>=0&&t.Ra<24&&Math.Abs(t.Dec)<=90),"Catalog coordinates are valid");

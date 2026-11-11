@@ -1,4 +1,4 @@
-NIGHTLENS 8.1.0 - IN-APP UPDATES
+NIGHTLENS 8.1.1 - IN-APP UPDATES
 
 Gear > Updates checks the public NightLens GitHub releases. Automatic checks
 run in the background at startup and every six hours; turn them off in that
@@ -16,7 +16,7 @@ Use a writable local portable app folder. Development folders containing .git
 are not updated in place. Recovery files remain in
 %LOCALAPPDATA%\NightLens\Updates. Close other running copies before updating.
 
-The 8.0.x versions do not include this feature: download and extract 8.1.0 once.
+The 8.0.x versions do not include this feature: download and extract 8.1.1 or later once.
 Future stable releases can then be installed from inside NightLens. The app and
 updates are unsigned; no Windows security settings are changed by the updater.
 

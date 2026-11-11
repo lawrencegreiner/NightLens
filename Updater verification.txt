@@ -1,12 +1,12 @@
-NightLens in-app updater verification (8.1.0)
+NightLens in-app updater verification (8.1.1)
 
-The release checks include 31 existing offline application assertions and 57
+The release checks include 32 offline application/build assertions and 62
 updater assertions, including stable-version selection, ignored draft/preview
 versions, required checksums, download-host policy, archive traversal/duplicate/
 symlink rejection, staged-file tampering, cancellation, transaction rollback,
 preserved settings and custom catalogs, updated manifests, recovery copies,
 source-checkout protection, helper-plan path restrictions, and update-window
-controls in Light, Dark and red Night themes.
+parent-process capture/mismatch handling, and controls in Light, Dark and red Night themes.
 
 The installer only touches managed portable app files. It waits for the parent
 process to exit, makes recovery copies, replaces the executable last, verifies

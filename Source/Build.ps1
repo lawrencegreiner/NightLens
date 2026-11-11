@@ -15,7 +15,7 @@ $mainSource = Join-Path $sourceRoot 'NightLens.cs'
 if ($Version) {
     if ($Version -notmatch '^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$') { throw 'Version must be MAJOR.MINOR.PATCH, for example 8.0.1.' }
     foreach ($part in $Version.Split('.')) { if ([long]$part -gt 65534) { throw 'Version components must be at most 65534.' } }
-    $contents = Get-Content -LiteralPath $mainSource -Raw
+    $contents = Get-Content -LiteralPath $mainSource -Raw -Encoding UTF8
     $contents = [regex]::Replace($contents, '(Assembly(?:File)?Version\(")[^"]+("\))', ('${1}' + $Version + '.0${2}'))
     $mainSource = Join-Path $buildRoot 'NightLens.versioned.cs'
     [IO.File]::WriteAllText($mainSource, $contents, [Text.UTF8Encoding]::new($false))

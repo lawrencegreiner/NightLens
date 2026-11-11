@@ -89,7 +89,7 @@ Forecast and city-search requests send observing coordinates or city names to Op
 
 NightLens checks the public GitHub releases at startup and every six hours. A newer stable version appears in the gear menu and dashboard footer. Open **Gear > Updates** for **Check now**, the automatic-check preference, and **Download and restart**. GitHub sign-in is not required.
 
-The old 8.0.x app has no updater. Download and extract 8.1.0 once to get this feature; later versions can be installed from inside NightLens.
+The old 8.0.x app has no updater. Download and extract 8.1.1 or later once to get this feature; later versions can be installed from inside NightLens.
 
 After you choose Download and restart, NightLens downloads the versioned portable ZIP, compares it with GitHub's SHA-256 digest, and validates the package's per-file manifest. The app closes only after the updater is ready. A separate temporary helper waits for the running app to exit, backs up existing managed files, installs the checked package, and restarts NightLens. Copy failures trigger rollback; the recovery folder is retained under `%LOCALAPPDATA%\NightLens\Updates`. Equipment, location, imported catalogs and update-check preferences stay in the user-data folder. Additional files in the portable app folder are retained.
 
