@@ -33,9 +33,9 @@ $arguments = @('/nologo', '/target:winexe', '/optimize+',
     ('/out:' + (Join-Path $packageRoot 'NightLens.exe')),
     '/reference:System.Windows.Forms.dll', '/reference:System.Drawing.dll',
     '/reference:System.Web.Extensions.dll', '/reference:System.Device.dll',
-    '/reference:System.Xml.Linq.dll', '/reference:System.Runtime.dll',
+    '/reference:System.Xml.Linq.dll', '/reference:System.Runtime.dll', '/reference:System.IO.Compression.dll', '/reference:System.IO.Compression.FileSystem.dll',
     ('/resource:' + (Join-Path $sourceRoot 'windowsZones.xml') + ',windowsZones.xml'),
-    $mainSource, (Join-Path $sourceRoot 'UI.cs'),
+    $mainSource, (Join-Path $sourceRoot 'UI.cs'), (Join-Path $sourceRoot 'Updater.cs'), (Join-Path $sourceRoot 'UpdateUI.cs'),
     (Join-Path $sourceRoot 'Catalogs.cs'), (Join-Path $sourceRoot 'Style.cs'), (Join-Path $sourceRoot 'V2Tests.cs'),
     (Join-Path $sourceRoot 'CapturePlanning.cs'), (Join-Path $sourceRoot 'CaptureUI.cs'), (Join-Path $sourceRoot 'V4Tests.cs'), (Join-Path $sourceRoot 'ThemeTests.cs'),
     (Join-Path $sourceRoot 'Conditions.cs'), (Join-Path $sourceRoot 'ObservingWeather.cs'), (Join-Path $sourceRoot 'WeatherViews.cs'), (Join-Path $sourceRoot 'WeatherTests.cs'), (Join-Path $sourceRoot 'EquipmentLibrary.cs'), (Join-Path $sourceRoot 'EquipmentForm.cs'), (Join-Path $sourceRoot 'EquipmentTests.cs'), (Join-Path $sourceRoot 'ObjectDetails.cs'), (Join-Path $sourceRoot 'ImageService.cs'), (Join-Path $sourceRoot 'ImageServiceTests.cs'), (Join-Path $sourceRoot 'AltitudeChart.cs'), (Join-Path $sourceRoot 'SkyMap.cs'), (Join-Path $sourceRoot 'ObjectTests.cs'), (Join-Path $sourceRoot 'astronomy.cs'))
@@ -49,7 +49,7 @@ Write-Output ('Built ' + (Join-Path $packageRoot 'NightLens.exe'))
 if ($Verify) {
     $checks = Join-Path $packageRoot 'NightLens.Checks.exe'
     $checkArgs = @($arguments | Where-Object { $_ -notlike '/target:*' -and $_ -notlike '/out:*' })
-    $checkArgs += @('/target:exe', '/main:NightLens.ReleaseChecks', ('/out:' + $checks), (Join-Path $packageRoot 'Scripts\ReleaseChecks.cs'))
+    $checkArgs += @('/target:exe', '/main:NightLens.ReleaseChecks', ('/out:' + $checks), (Join-Path $packageRoot 'Scripts\ReleaseChecks.cs'), (Join-Path $packageRoot 'Scripts\UpdaterChecks.cs'))
     & $compilerPath @checkArgs
     if ($LASTEXITCODE -ne 0) { throw 'Could not compile offline release checks.' }
     & $checks

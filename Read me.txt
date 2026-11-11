@@ -1,4 +1,28 @@
-﻿NIGHTLENS 8.0 — Windows astrophotography dashboard
+NIGHTLENS 8.1.0 - IN-APP UPDATES
+
+Gear > Updates checks the public NightLens GitHub releases. Automatic checks
+run in the background at startup and every six hours; turn them off in that
+window if preferred. A newer stable version appears in the gear menu and footer.
+
+Choose Download and restart to install a newer version. NightLens verifies the
+GitHub ZIP checksum, rejects unsafe archive paths, checks every file against
+the update manifest, and prepares a recovery copy before replacing app files.
+The helper waits for NightLens to close and restarts it after installation.
+Copy failures trigger rollback. Your equipment, location, imported catalogs and
+preferences stay under %LOCALAPPDATA%\NightLens and are retained.
+
+Update downloads require a connection, but no GitHub account or sign-in.
+Use a writable local portable app folder. Development folders containing .git
+are not updated in place. Recovery files remain in
+%LOCALAPPDATA%\NightLens\Updates. Close other running copies before updating.
+
+The 8.0.x versions do not include this feature: download and extract 8.1.0 once.
+Future stable releases can then be installed from inside NightLens. The app and
+updates are unsigned; no Windows security settings are changed by the updater.
+
+DETAILED APPLICATION GUIDE AND PREVIOUS FEATURES
+
+NIGHTLENS 8.0 — Windows astrophotography dashboard
 
 OBSERVING VERDICT AND DETAILED WEATHER (VERSION 8.0)
 The three old condition cards are replaced by a single observing-verdict banner.

@@ -8,7 +8,9 @@ namespace NightLens {
 internal static class ReleaseChecks {
     static int count;
     static void Check(bool ok,string name) { if(!ok) throw new Exception(name); count++; Console.WriteLine("PASS: "+name); }
-    [STAThread] public static int Main() {
+    [STAThread] public static int Main(string[] args) {
+        System.Net.ServicePointManager.SecurityProtocol=System.Net.SecurityProtocolType.Tls12;
+        if(args.Length==1&&args[0]=="--verify-live-update")return UpdaterChecks.VerifyLive();
         string original=Settings.Folder;
         try {
             Settings.Folder=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Source",".build","release-check-settings");
@@ -45,7 +47,7 @@ internal static class ReleaseChecks {
             Check(Math.Abs(custom.Altitude(Body.Sun,w.DarkStart.Value)+18)<.01,"Dark sky starts with geometric Sun below -18 degrees");
             var dst=new Night(s,new Forecast(),at,new DateTime(2026,10,31));Check((dst.End-dst.Start).TotalHours==25,"DST night retains its extra hour");
             Check(LocationForm.MapZone("America/Denver")=="Mountain Standard Time","Windows time-zone mapping loads");
-            Console.WriteLine(count+" offline release checks passed.");return 0;
+            count+=UpdaterChecks.Run();Console.WriteLine(count+" offline release checks passed.");return 0;
         } catch(Exception error) {Console.Error.WriteLine("FAIL: "+error);return 1;}
         finally {Settings.Folder=original;}
     }

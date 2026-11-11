@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,8 +16,8 @@ using CosineKitty;
 [assembly:System.Reflection.AssemblyTitle("NightLens")]
 [assembly:System.Reflection.AssemblyProduct("NightLens")]
 [assembly:System.Reflection.AssemblyDescription("Astrophotography night planning dashboard")]
-[assembly:System.Reflection.AssemblyVersion("8.0.0.0")]
-[assembly:System.Reflection.AssemblyFileVersion("8.0.0.0")]
+[assembly:System.Reflection.AssemblyVersion("8.1.0.0")]
+[assembly:System.Reflection.AssemblyFileVersion("8.1.0.0")]
 
 namespace NightLens {
 public class Rig {
@@ -159,7 +159,7 @@ static class Program {
     [System.Runtime.InteropServices.DllImport("user32.dll")]static extern bool SetProcessDPIAware();
     [System.Runtime.InteropServices.DllImport("shell32.dll",CharSet=System.Runtime.InteropServices.CharSet.Unicode)]static extern int SetCurrentProcessExplicitAppUserModelID(string appId);
     [STAThread]static int Main(string[] args){ServicePointManager.SecurityProtocol=SecurityProtocolType.Tls12;SetProcessDPIAware();SetCurrentProcessExplicitAppUserModelID("NightLens.Desktop");Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
-        if(args.Length>0&&args[0]=="--fetch-images")return ObjectTests.FetchImages(args);if(args.Length>0&&args[0]=="--test")return Tests.Run(args);
+        if(args.Length==3&&args[0]=="--apply-update")return UpdateWorker.Run(args[1],args[2]);if(args.Length>0&&args[0]=="--fetch-images")return ObjectTests.FetchImages(args);if(args.Length>0&&args[0]=="--test")return Tests.Run(args);
         Application.ThreadException+=(a,b)=>MessageBox.Show("NightLens encountered a problem: "+b.Exception.Message,"NightLens");Application.Run(new MainForm());return 0;
     }
 }

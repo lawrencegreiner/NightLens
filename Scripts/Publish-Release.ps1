@@ -4,7 +4,8 @@ if(!$env:GH_TOKEN){throw 'GH_TOKEN is required; GitHub Actions supplies its buil
 if($env:GITHUB_REPOSITORY -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$'){throw 'Invalid repository name.'}
 $manifest=Get-Content -LiteralPath (Join-Path $ArtifactDirectory 'build-metadata.json') -Raw | ConvertFrom-Json
 if($manifest.version -notmatch '^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$' -or $manifest.tag -ne ('v'+$manifest.version) -or $manifest.commit -notmatch '^[0-9a-f]{40}$'){throw 'Invalid release metadata.'}
-if($manifest.commit -ne $env:GITHUB_SHA){throw 'Artifact source does not match this workflow run.'}
+$checkedOut=git rev-parse HEAD
+if($LASTEXITCODE -ne 0 -or $manifest.commit -ne $checkedOut){throw 'Artifact source does not match the checked-out workflow source.'}
 if($manifest.archive -ne ('NightLens-Windows11-'+$manifest.tag+'.zip')){throw 'Invalid portable ZIP filename.'}
 $zip=Join-Path $ArtifactDirectory $manifest.archive
 if((Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant() -ne $manifest.sha256){throw 'Artifact ZIP checksum does not match.'}
@@ -28,7 +29,7 @@ Portable Windows release built and checked by GitHub Actions.
 
 No installer, compiler, Python or Node.js is required to run. Equipment and location settings remain under %LOCALAPPDATA%\NightLens. The ZIP includes source credits, licenses and usage instructions. This application is unsigned.
 
-The build passed offline planning, equipment, catalog, weather and astronomy checks, plus per-file portable ZIP integrity checks. SHA256SUMS.txt contains the download checksum. A private repository requires an authorized GitHub sign-in to download.
+The build passed offline planning, equipment, catalog, weather and astronomy checks, plus per-file portable ZIP integrity checks. SHA256SUMS.txt contains the download checksum. Public release downloads do not need a GitHub sign-in. NightLens 8.1.0 and later can check and install future stable releases from Gear > Updates.
 
 Source commit: $($manifest.commit)
 "@

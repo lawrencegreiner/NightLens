@@ -36,6 +36,8 @@ try{
     foreach($license in @('ASTRONOMY-LICENSE.txt','UNICODE-LICENSE.txt')){Add-File (Join-Path $root ('Source\'+$license)) ('NightLens/Licenses/'+$license)}
     Add-Text ("NightLens $Version - Portable Windows application`n`nExtract the entire ZIP into a writable folder on Windows 11.`nOpen the NightLens folder and double-click NightLens.exe.`nKeep Assets, Catalogs, EquipmentLibrary and StarCatalog beside the executable.`nNo installer, compiler, Python, Node.js, account or API key is needed to run.`nInternet is needed for weather, city search and new reference pictures.`nEquipment and location settings stay under %LOCALAPPDATA%\NightLens.`nUse the gear for equipment, location, catalogs, Bortle and appearance.`nSee Read me.txt and the bundled documents for sources and planning limits.`nThis is an unsigned personal Windows application.`n") 'NightLens/START HERE.txt'
     Add-Text ("Version: $Version`nSource commit: $commit`nExecutable SHA-256: "+(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant()+"`n") 'NightLens/Build information.txt'
+    $manifestFiles=@($expected.Keys | Sort-Object | ForEach-Object { @{path=$_.Substring(10);sha256=$expected[$_].ToLowerInvariant()} })
+    Add-Text (@{schema=1;version=$Version;files=$manifestFiles} | ConvertTo-Json -Depth 5) 'NightLens/update-manifest.json'
 }finally{$archive.Dispose()}
 $check=[IO.Compression.ZipFile]::OpenRead($archivePath)
 try{

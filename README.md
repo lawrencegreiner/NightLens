@@ -56,7 +56,7 @@ The **Windows portable build and release** workflow runs on GitHub's hosted Wind
 
 Use `MAJOR.MINOR.PATCH` versions with numeric components at most 65534. The workflow stamps the executable and About window from the requested version. The source's default version is used for ordinary local builds. Existing releases are never overwritten; use a new version for each release. If an upload fails after creating a draft, inspect/remove that failed draft before retrying the same version.
 
-Portable release assets are a Windows ZIP and `SHA256SUMS.txt`. The workflow checks catalogs, equipment guidance, astronomical darkness, offline target planning, reference images, weather verdicts, sky-map data and daylight-saving behavior. It then verifies each file in the portable ZIP before uploading, checks GitHub's asset digests, and only then publishes. These offline checks do not replace manual UI testing or live forecast-service checks. Workflow artifacts are retained for 14 days; published release downloads remain attached to the release.
+Portable release assets are a Windows ZIP and `SHA256SUMS.txt`. The workflow checks catalogs, equipment guidance, astronomical darkness, offline target planning, reference images, weather verdicts, sky-map data, daylight-saving behavior, and update package validation/rollback. It then verifies each file in the portable ZIP before uploading, checks GitHub's asset digests, and only then publishes. These offline checks do not replace manual UI testing or live forecast-service checks. Workflow artifacts are retained for 14 days; published release downloads remain attached to the release.
 
 Local equivalents:
 
@@ -65,7 +65,7 @@ Local equivalents:
 .\Scripts\Package-Portable.ps1 -Version 8.0.1
 ```
 
-The first build requires NuGet access for the pinned C# compiler. Hosted runners use the Windows SDK metadata if desktop Windows metadata is absent. Release automation does not code-sign the app or change repository visibility. Private-repository downloads still require GitHub access.
+The first build requires NuGet access for the pinned C# compiler. Hosted runners use the Windows SDK metadata if desktop Windows metadata is absent. Release automation does not code-sign the app or change repository visibility. This repository is public; its release downloads do not require a GitHub sign-in.
 
 ## Repository contents
 
@@ -85,15 +85,17 @@ User settings and imported catalogs are stored under `%LOCALAPPDATA%\NightLens`,
 
 Forecast and city-search requests send observing coordinates or city names to Open-Meteo and 7Timer. Survey images are requested from CDS. Catalog calculations and the star map run locally. Weather and seeing are forecasts, not measurements at the observing site. Provider coverage and usage terms apply; the included documentation notes the free Open-Meteo endpoint's personal/noncommercial use.
 
-## Publish privately using GitHub Desktop
+## In-app updates (8.1.0 and later)
 
-1. Choose **File > Add local repository**.
-2. Select this `NightLens` folder.
-3. Click **Publish repository**.
-4. Set **Name** to **NightLens** and leave **Keep this code private** checked.
-5. Select your personal account and click **Publish repository**.
+NightLens checks the public GitHub releases at startup and every six hours. A newer stable version appears in the gear menu and dashboard footer. Open **Gear > Updates** for **Check now**, the automatic-check preference, and **Download and restart**. GitHub sign-in is not required.
 
-The repository becomes a private GitHub repository only after that publishing step. The local preparation does not create a remote repository or change the visibility of an existing one.
+The old 8.0.x app has no updater. Download and extract 8.1.0 once to get this feature; later versions can be installed from inside NightLens.
+
+After you choose Download and restart, NightLens downloads the versioned portable ZIP, compares it with GitHub's SHA-256 digest, and validates the package's per-file manifest. The app closes only after the updater is ready. A separate temporary helper waits for the running app to exit, backs up existing managed files, installs the checked package, and restarts NightLens. Copy failures trigger rollback; the recovery folder is retained under `%LOCALAPPDATA%\NightLens\Updates`. Equipment, location, imported catalogs and update-check preferences stay in the user-data folder. Additional files in the portable app folder are retained.
+
+Updates need a writable local app folder. Source checkouts containing `.git` are not overwritten; use a separate extracted portable copy. If other programs lock app files, the update stops and reports recovery information. The updater does not request administrator access or alter Windows security settings. Packages remain unsigned; checksums detect altered/incomplete downloads but are not a code-signing certificate. The trusted update source is this repository's stable GitHub releases.
+
+The ZIP includes `update-manifest.json`; keep it in the portable package. Future workflow releases create this manifest automatically. Only stable `vMAJOR.MINOR.PATCH` releases are offered. Downgrades and preview builds are not installed through this updater.
 
 ## Credits and licensing
 

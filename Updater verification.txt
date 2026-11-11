@@ -1,0 +1,25 @@
+NightLens in-app updater verification (8.1.0)
+
+The release checks include 31 existing offline application assertions and 57
+updater assertions, including stable-version selection, ignored draft/preview
+versions, required checksums, download-host policy, archive traversal/duplicate/
+symlink rejection, staged-file tampering, cancellation, transaction rollback,
+preserved settings and custom catalogs, updated manifests, recovery copies,
+source-checkout protection, helper-plan path restrictions, and update-window
+controls in Light, Dark and red Night themes.
+
+The installer only touches managed portable app files. It waits for the parent
+process to exit, makes recovery copies, replaces the executable last, verifies
+installed file hashes, and attempts to restore earlier files on copy failure.
+The rollback assertions inject an installation failure and verify recovery.
+The checks do not certify antivirus behavior, every removable filesystem, power
+loss during file replacement, or future release code. Recovery copies are kept.
+
+The public release download is checked through GitHub HTTPS and its SHA-256
+asset digest; the per-file manifest is covered by that archive checksum. This
+is integrity verification, not a code-signing certificate. The app does not
+contain an access token or require a GitHub sign-in.
+
+For a separate live public-feed, download and staging check after a release,
+run NightLens.Checks.exe --verify-live-update from a verified source build.
+That check does not install the downloaded app or change observing settings.
