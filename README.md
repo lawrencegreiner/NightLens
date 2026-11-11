@@ -43,7 +43,29 @@ EquipmentLibrary/
 StarCatalog/
 ```
 
-Include the source/credit documents when making a portable distribution. No Python, Node.js, API key or application account is required to run NightLens. Generated executables, compiler downloads and distribution ZIPs are excluded from Git; portable downloads can be attached to GitHub Releases later.
+Include the source/credit documents when making a portable distribution. No Python, Node.js, API key or application account is required to run NightLens. Generated executables, compiler downloads and distribution ZIPs are excluded from Git; GitHub Actions publishes portable downloads for version tags or a manual release run.
+
+## Automated Windows builds and releases
+
+The **Windows portable build and release** workflow runs on GitHub's hosted Windows build server. No personal access token or extra repository secret is required; the publishing job uses GitHub's built-in repository token.
+
+- Pushes to `main` and pull requests build the app, run offline checks, and save a portable build under the workflow run's **Artifacts**. They do not publish a release.
+- Pushing a new tag such as `v8.0.1` automatically builds and publishes that version as a GitHub Release after all checks pass.
+- For a manual release, open **Actions > Windows portable build and release > Run workflow**, select `main`, enter a new version such as `8.0.1`, check **Publish a new portable release**, and run it. The workflow creates the matching tag and release.
+- Leave the publish checkbox off for a build-only test. A blank version uses the source's current default version for this mode.
+
+Use `MAJOR.MINOR.PATCH` versions with numeric components at most 65534. The workflow stamps the executable and About window from the requested version. The source's default version is used for ordinary local builds. Existing releases are never overwritten; use a new version for each release. If an upload fails after creating a draft, inspect/remove that failed draft before retrying the same version.
+
+Portable release assets are a Windows ZIP and `SHA256SUMS.txt`. The workflow checks catalogs, equipment guidance, astronomical darkness, offline target planning, reference images, weather verdicts, sky-map data and daylight-saving behavior. It then verifies each file in the portable ZIP before uploading, checks GitHub's asset digests, and only then publishes. These offline checks do not replace manual UI testing or live forecast-service checks. Workflow artifacts are retained for 14 days; published release downloads remain attached to the release.
+
+Local equivalents:
+
+```powershell
+.\Source\Build.ps1 -Version 8.0.1 -Verify
+.\Scripts\Package-Portable.ps1 -Version 8.0.1
+```
+
+The first build requires NuGet access for the pinned C# compiler. Hosted runners use the Windows SDK metadata if desktop Windows metadata is absent. Release automation does not code-sign the app or change repository visibility. Private-repository downloads still require GitHub access.
 
 ## Repository contents
 
