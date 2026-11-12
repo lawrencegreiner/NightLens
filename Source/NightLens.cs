@@ -16,8 +16,8 @@ using CosineKitty;
 [assembly:System.Reflection.AssemblyTitle("NightLens")]
 [assembly:System.Reflection.AssemblyProduct("NightLens")]
 [assembly:System.Reflection.AssemblyDescription("Astrophotography night planning dashboard")]
-[assembly:System.Reflection.AssemblyVersion("8.2.1.0")]
-[assembly:System.Reflection.AssemblyFileVersion("8.2.1.0")]
+[assembly:System.Reflection.AssemblyVersion("8.2.2.0")]
+[assembly:System.Reflection.AssemblyFileVersion("8.2.2.0")]
 
 namespace NightLens {
 public class Rig {
@@ -115,7 +115,7 @@ public class Night {
     public Settings S;public Observer Obs;public DateTime Start,End,Now;public List<DateTime> Dark=new List<DateTime>();public List<Pick> Picks=new List<Pick>();
     public double Illum,Phase; public DateTime? Rise,Set;public DateTime PhaseAt;
     public int CatalogCount; public string CatalogNotice; public HorizonProfile Horizon; public int PlanningStepMinutes;
-    public Night(Settings s,Forecast forecast,DateTime now,DateTime? planningDate=null){S=s;Now=now;Obs=new Observer(s.Lat,s.Lon,0);Horizon=SiteLibrary.HorizonAt(s);PlanningStepMinutes=Horizon.HasMask||Horizon.MinimumAltitude!=30?1:10;var date=planningDate.HasValue?planningDate.Value.Date:UpcomingDate(s,now);Start=s.Utc(date.AddHours(12));End=s.Utc(date.AddDays(1).AddHours(12));
+    public Night(Settings s,Forecast forecast,DateTime now,DateTime? planningDate=null){S=s;Now=now;Obs=new Observer(s.Lat,s.Lon,0);Horizon=SiteLibrary.HorizonAt(s).Copy();Horizon.Normalize();PlanningStepMinutes=Horizon.HasMask||Horizon.MinimumAltitude!=30?1:10;var date=planningDate.HasValue?planningDate.Value.Date:UpcomingDate(s,now);Start=s.Utc(date.AddHours(12));End=s.Utc(date.AddDays(1).AddHours(12));
         for(DateTime t=Start;t<End;t=t.AddMinutes(PlanningStepMinutes))if(Altitude(Body.Sun,t)<-18)Dark.Add(t);
         PhaseAt=Dark.Count>0?Dark[Dark.Count/2]:Start.AddHours(12);var at=new AstroTime(PhaseAt);Illum=Astronomy.Illumination(Body.Moon,at).phase_fraction;Phase=Astronomy.MoonPhase(at);
         var rise=Astronomy.SearchRiseSet(Body.Moon,Obs,Direction.Rise,new AstroTime(Start),1);var set=Astronomy.SearchRiseSet(Body.Moon,Obs,Direction.Set,new AstroTime(Start),1);Rise=rise==null?(DateTime?)null:rise.ToUtcDateTime();Set=set==null?(DateTime?)null:set.ToUtcDateTime();
@@ -135,9 +135,11 @@ public class Night {
         for(DateTime t=Start;t<End;t=t.AddMinutes(PlanningStepMinutes)){double sun=Altitude(Body.Sun,t);if(sun> -18)continue;slots[t]=new[]{sun,(Astronomy.SiderealTime(new AstroTime(t))+S.Lon/15)*Math.PI/12,0.0,Altitude(Body.Moon,t)};moons[t]=Astronomy.Equator(Body.Moon,new AstroTime(t),Obs,EquatorEpoch.OfDate,Aberration.Corrected);}
         foreach(var x in targets){if(x.Type=="Star"||x.Type=="Double star"||x.Type=="Nova")continue;bool planetary=x.Body.HasValue;var samples=new List<Tuple<DateTime,double>>();var fixedEq=planetary?default(Equatorial):Coords(x,PhaseAt);
             foreach(var slot in slots){var t=slot.Key;if(slot.Value[0]>(planetary?-6:-18))continue;double alt=planetary?Altitude(x,t):Math.Asin(Math.Max(-1,Math.Min(1,sinlat*Math.Sin(fixedEq.dec*rad)+coslat*Math.Cos(fixedEq.dec*rad)*Math.Cos(slot.Value[1]-fixedEq.ra*Math.PI/12))))/rad;double az=0;if(Horizon.HasMask){if(planetary){var horizonEq=Coords(x,t);az=Astronomy.Horizon(new AstroTime(t),Obs,horizonEq.ra,horizonEq.dec,Refraction.Normal).azimuth;}else{double ha=slot.Value[1]-fixedEq.ra*Math.PI/12;az=Math.Atan2(-Math.Cos(fixedEq.dec*rad)*Math.Sin(ha),Math.Sin(fixedEq.dec*rad)*coslat-Math.Cos(fixedEq.dec*rad)*sinlat*Math.Cos(ha))/rad;if(az<0)az+=360;}}if(alt>=Horizon.Limit(az))samples.Add(Tuple.Create(t,alt));}
-            var usable=new List<Tuple<DateTime,double>>();var segment=new List<Tuple<DateTime,double>>();foreach(var sample in samples){if(segment.Count>0&&(sample.Item1-segment.Last().Item1).TotalMinutes>PlanningStepMinutes+.1){if((segment.Last().Item1-segment.First().Item1).TotalMinutes>=30)usable.AddRange(segment);segment.Clear();}segment.Add(sample);}if(segment.Count>0&&(segment.Last().Item1-segment.First().Item1).TotalMinutes>=30)usable.AddRange(segment);samples=usable;if(samples.Count<2)continue;
-            Func<Tuple<DateTime,double>,double> score=h=>h.Item2-slots[h.Item1][2];
-            var best=samples.OrderByDescending(score).First();double fw=Math.Max(rig.Width,rig.Height)*60,fh=Math.Min(rig.Width,rig.Height)*60;
+            var windows=VisibilityWindows(samples,PlanningStepMinutes);if(windows.Count==0)continue;
+            // Rank the actual clear interval, rather than an obstructed transit or
+            // all visible fragments added together. Preserve unmasked scoring.
+            samples=windows.OrderByDescending(w=>WindowScore(w,Horizon.HasMask)).First();
+            var best=samples.OrderByDescending(h=>h.Item2).First();double windowScore=WindowScore(samples,Horizon.HasMask);double fw=Math.Max(rig.Width,rig.Height)*60,fh=Math.Min(rig.Width,rig.Height)*60;
             bool knownSize=x.Major>0&&x.Minor>0;bool fits=knownSize&&x.Major<=fw*.9&&x.Minor<=fh*.9;bool small=knownSize&&x.Major<fw*.08;string fit=!knownSize?"Size unavailable — verify framing":fits?"Fits one frame":rig.Mosaic?"Mosaic needed":"Close-up only; full object will not fit";
             string advice="Stack several short exposures; check a test frame.";
             if(rig.Mount=="Not specified") advice="Set your mount type to get exposure guidance.";
@@ -148,12 +150,15 @@ public class Night {
             var eq=Coords(x,best.Item1);var moon=moons[best.Item1];double sep=Separation(eq.ra,eq.dec,moon.ra,moon.dec);bool moonUp=slots[best.Item1][3]>0;double moonPenalty=0;
             if(!planetary&&moonUp){moonPenalty=Illum*22+(sep<40?25:sep<70?10:0);if(x.Type=="Emission nebula"&&rig.Filter){moonPenalty*=.45;advice+=" Use your emission-nebula filter.";}else if(Illum>.5)advice+=" Bright Moon reduces faint detail.";if(sep<40)advice+=" Close to the Moon; expect extra glare.";}
             if(small&&!planetary)advice+=" Small in this frame; expect to crop.";
-            double brightnessPenalty=planetary?0:x.Magnitude.HasValue?Math.Max(0,x.Magnitude.Value-(8+5*Math.Log10(rig.Aperture/50)))*6:15;var site=SkySite.At(S);double lightPenalty=site!=null&&site.Bortle>5&&(x.Type=="Dark nebula"||x.Type=="Reflection nebula"||x.Type=="Galaxy")?(site.Bortle-5)*(x.Type=="Dark nebula"?8:4):0;double total=score(best)-lightPenalty+(fits?18:!knownSize?-8:rig.Mosaic?2:-20)-moonPenalty-brightnessPenalty-(small?12:0)-(planetary&&x.Body!=Body.Moon?30:0);
-            // Keep only the uninterrupted visibility interval containing the best sample.
-            int index=samples.IndexOf(best),a=index,z=index;while(a>0&&(samples[a].Item1-samples[a-1].Item1).TotalMinutes<PlanningStepMinutes+.1)a--;while(z<samples.Count-1&&(samples[z+1].Item1-samples[z].Item1).TotalMinutes<PlanningStepMinutes+.1)z++;
-            Picks.Add(new Pick{Target=x,Best=best.Item1,Start=samples[a].Item1,End=samples[z].Item1,Alt=best.Item2,Score=total,Fit=fit,Advice=advice,Separation=sep});
+            double brightnessPenalty=planetary?0:x.Magnitude.HasValue?Math.Max(0,x.Magnitude.Value-(8+5*Math.Log10(rig.Aperture/50)))*6:15;var site=SkySite.At(S);double lightPenalty=site!=null&&site.Bortle>5&&(x.Type=="Dark nebula"||x.Type=="Reflection nebula"||x.Type=="Galaxy")?(site.Bortle-5)*(x.Type=="Dark nebula"?8:4):0;double total=windowScore-lightPenalty+(fits?18:!knownSize?-8:rig.Mosaic?2:-20)-moonPenalty-brightnessPenalty-(small?12:0)-(planetary&&x.Body!=Body.Moon?30:0);
+            Picks.Add(new Pick{Target=x,Best=best.Item1,Start=samples.First().Item1,End=samples.Last().Item1,Alt=best.Item2,Score=total,Fit=fit,Advice=advice,Separation=sep});
         }Picks=ImagingGroups.Unique(Picks,rig).Take(3).ToList();foreach(var pick in Picks){DateTime best=pick.Best;double high=Altitude(pick.Target,best);for(DateTime time=pick.Start;time<=pick.End;time=time.AddMinutes(5)){double alt=Altitude(pick.Target,time);if(alt>high&&Visible(pick.Target,time)){high=alt;best=time;}}DateTime refineStart=best.AddMinutes(-5)<pick.Start?pick.Start:best.AddMinutes(-5),refineEnd=best.AddMinutes(5)>pick.End?pick.End:best.AddMinutes(5);for(DateTime time=refineStart;time<=refineEnd;time=time.AddMinutes(1)){double alt=Altitude(pick.Target,time);if(alt>high&&Visible(pick.Target,time)){high=alt;best=time;}}pick.Best=best;pick.Alt=high;pick.Guide=CapturePlanning.For(pick,rig,S,this);}
     }
+    internal static List<List<Tuple<DateTime,double>>> VisibilityWindows(List<Tuple<DateTime,double>> samples,int step){
+        var result=new List<List<Tuple<DateTime,double>>>();var segment=new List<Tuple<DateTime,double>>();
+        foreach(var sample in samples){if(segment.Count>0&&(sample.Item1-segment.Last().Item1).TotalMinutes>step+.1){if((segment.Last().Item1-segment.First().Item1).TotalMinutes>=30)result.Add(segment);segment=new List<Tuple<DateTime,double>>();}segment.Add(sample);}if(segment.Count>0&&(segment.Last().Item1-segment.First().Item1).TotalMinutes>=30)result.Add(segment);return result;
+    }
+    internal static double WindowScore(List<Tuple<DateTime,double>> window,bool masked){return window.Max(p=>p.Item2)+(masked?3*Math.Min(6,(window.Last().Item1-window.First().Item1).TotalHours):0);}
     static DateTime nowFloor(DateTime t){return t.AddMinutes(-10);}
 }
 

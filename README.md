@@ -86,7 +86,7 @@ The first build requires NuGet access for the pinned C# compiler. Hosted runners
 
 User settings and imported catalogs are stored under `%LOCALAPPDATA%\NightLens`, outside this repository. They are not included in this source ZIP. Image cache files and local settings should not be committed.
 
-Forecast and city-search requests send observing coordinates or city names to Open-Meteo and 7Timer. Color reference images use Pan-STARRS/STScI where suitable, with DSS2 static HiPS tiles from CSIRO/CDS as fallback. Catalog calculations and the star map run locally. Weather and seeing are forecasts, not measurements at the observing site. Provider coverage and usage terms apply; the included documentation notes the free Open-Meteo endpoint's personal/noncommercial use.
+Forecast and city-search requests send observing coordinates or city names to Open-Meteo and 7Timer. Color reference images use DSS2 static HiPS tiles from CSIRO/CDS. Catalog calculations and the star map run locally. Weather and seeing are forecasts, not measurements at the observing site. Provider coverage and usage terms apply; the included documentation notes the free Open-Meteo endpoint's personal/noncommercial use.
 
 ## In-app updates (8.1.0 and later)
 
@@ -119,6 +119,8 @@ Open **Gear > Saved observing sites** to save the current location or add/edit a
 
 Open **Gear > Horizon mask** to click/drag skyline points, fine-tune azimuth/altitude, or import a Stellarium `.hrz` file. North is 0 degrees and azimuth increases eastward. Import supports degrees, radians or gradians, altitude or zenith distance, plus a landscape rotation. Set the matching format/rotation from Stellarium landscape.ini when needed. The altitude floor defaults to 30 degrees. Planning counts only uninterrupted windows of at least 30 minutes above both the floor and skyline, sampled every minute when a mask/custom floor is used. A saved skyline is not applied more than 1 km from its recorded position.
 
-Color images use independently hosted survey services, local tile reprojection, persistent caching and bounded downloads. Real survey plate artifacts and saturated cores may remain. The original startup artwork is drawn as vectors; object reference images are scientific survey data. See `Startup artwork.txt` for artwork provenance.
+Color images use independently hosted DSS2 survey tiles, local tile reprojection, persistent caching and bounded downloads. Real survey plate artifacts and saturated cores may remain. The original startup artwork is drawn as vectors; object reference images are scientific survey data. See `Startup artwork.txt` for artwork provenance.
 
 Version 8.2.1 groups settings under **Observing site**, **Planning**, and **Appearance**. Updates and About remain directly accessible. Pan-STARRS cutouts with blank white coverage borders fall back to DSS2 automatically. The loading screen uses an original optical-aperture design.
+
+Version 8.2.2 removes Pan-STARRS from reference images. Horizon-aware ranking also favors longer uninterrupted clear windows (3 points/hour, capped at 6 hours) while retaining equipment, altitude, Moon and brightness factors. Each recommended window must clear the active skyline for at least 30 continuous minutes.

@@ -1,3 +1,10 @@
+VERSION 8.2.2 - CURRENT IMAGE SOURCE
+
+All deep-sky references use DSS2 color static HiPS tiles from CSIRO/CASDA
+with CDS mirrors. Pan-STARRS is no longer used. Older cache keys are replaced.
+Coordinates, projection, source credits and survey limitations are unchanged.
+The Pan-STARRS information below documents prior versions only.
+
 VERSION 8.2.0 - CURRENT COLOR IMAGE DELIVERY
 
 Pan-STARRS PS1/STScI: optical i/r/g mapped to RGB for covered fields at

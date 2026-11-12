@@ -1,3 +1,17 @@
+NIGHTLENS 8.2.2 - DSS2 IMAGES AND HORIZON-AWARE RANKING
+
+Deep-sky reference images now use DSS2 color exclusively. Pan-STARRS is no
+longer requested, and older cached cutouts are replaced automatically.
+
+An active horizon mask filters target visibility before the top three are
+chosen. Each target must have at least 30 uninterrupted clear minutes. With
+a mask active, ranking now also credits the duration of the chosen clear
+window: 3 points per hour, capped at 6 hours, alongside altitude, equipment,
+Moon and brightness factors. Separate windows are never added across a
+blockage. The object card identifies when a horizon mask is applied.
+
+Older image-selection and ranking notes below are historical.
+
 NIGHTLENS 8.2.1 - IMAGE COVERAGE AND SETTINGS
 
 Pan-STARRS cutouts with white missing-data borders now fall back to DSS2.
