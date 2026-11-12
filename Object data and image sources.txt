@@ -25,7 +25,7 @@ HiPS specification: https://www.ivoa.net/documents/HiPS/
 
 Successful survey images and tiles are cached locally, not bundled in releases.
 The caption records the actual survey. No AI-generated object images are used.
-Only the decorative loading backdrop is generated (Startup artwork.txt).
+The loading screen uses original vector artwork (Startup artwork.txt).
 The new local horizon model supersedes the older statement below that terrain
 is not modeled: user-entered skyline heights now restrict target windows.
 

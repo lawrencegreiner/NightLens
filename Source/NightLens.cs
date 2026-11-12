@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,8 +16,8 @@ using CosineKitty;
 [assembly:System.Reflection.AssemblyTitle("NightLens")]
 [assembly:System.Reflection.AssemblyProduct("NightLens")]
 [assembly:System.Reflection.AssemblyDescription("Astrophotography night planning dashboard")]
-[assembly:System.Reflection.AssemblyVersion("8.2.0.0")]
-[assembly:System.Reflection.AssemblyFileVersion("8.2.0.0")]
+[assembly:System.Reflection.AssemblyVersion("8.2.1.0")]
+[assembly:System.Reflection.AssemblyFileVersion("8.2.1.0")]
 
 namespace NightLens {
 public class Rig {

@@ -1,3 +1,15 @@
+NIGHTLENS 8.2.1 - IMAGE COVERAGE AND SETTINGS
+
+Pan-STARRS cutouts with white missing-data borders now fall back to DSS2.
+Existing color cutouts refresh once so cached white borders are replaced.
+The startup screen is a new original optical-aperture design.
+The gear menu groups related settings:
+  Observing site > Location, Saved observing sites, Horizon mask, Sky brightness
+  Planning > Equipment, Catalogs, Use current observing night
+  Appearance > Light, Dark, Night (red), Keep on top
+Updates and About remain directly accessible.
+These grouped paths supersede earlier instructions showing flat menu entries.
+
 NIGHTLENS 8.2.0 - SAVED SITES, HORIZONS AND COLOR IMAGES
 
 STARTUP
