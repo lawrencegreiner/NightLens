@@ -1,3 +1,48 @@
+NIGHTLENS 8.2.0 - SAVED SITES, HORIZONS AND COLOR IMAGES
+
+STARTUP
+An original NightLens night-sky screen displays actual catalog, equipment,
+ephemeris, forecast and target-planning stages. Escape or X cancels startup.
+Night theme uses red artwork and text.
+
+SAVED OBSERVING SITES
+Gear > Saved observing sites > Save current saves the observing location,
+time zone, Bortle/SQM information and horizon together. Edit allows a travel
+site to be entered manually. Use selected, or the dashboard site selector,
+plans at that site's saved coordinates instead of Windows GPS. Select Windows
+location to resume automatic positioning. Equipment is shared across sites.
+Changes in the site manager apply when saved; Cancel discards them.
+
+HORIZON MASK
+Gear > Horizon mask opens the local skyline editor. Click to add a point,
+drag a point, or select it and edit its azimuth/altitude numerically. Delete
+removes the selected point; Clear removes the skyline. North=0/360 degrees,
+east=90, south=180, west=270. Heights interpolate between points, including
+across north. One point means the same skyline height in every direction.
+Set a minimum target altitude (default 30 degrees). Targets must clear BOTH
+this floor and the skyline. Disable skyline to retain only the floor.
+
+Import .hrz reads Stellarium's two-column horizon files, with # comments.
+Select the file's list mode (degrees/radians/gradians, altitude or zenith
+distance). If landscape.ini specifies a rotation, enter it in the import
+options. The file alone cannot reliably identify those settings. Matching
+0/360 endpoint heights merge; conflicting heights and invalid rows are rejected.
+
+Masks/custom floors use one-minute planning samples. Recommended imaging
+windows must remain clear for at least 30 continuous minutes; a blockage splits
+the window. The altitude chart's dotted line shows the skyline/floor. A skyline
+is local: moving more than 1 km from its anchor disables it and shows a footer
+notice. Save a separate mask for each observing spot. Narrow obstructions
+between samples may need extra margin. Weather does not remove target ideas.
+
+COLOR REFERENCE IMAGES
+Small northern fields first use Pan-STARRS optical i/r/g through STScI. Larger
+fields and uncovered positions use DSS2 color static HiPS tiles, initially
+from CSIRO with CDS mirrors. Download time is bounded and successful images
+are cached. The caption names the actual survey. Plate artifacts and saturated
+cores are part of the historical survey; images are not live or AI-generated.
+A failed request shows an error/retry rather than loading indefinitely.
+
 NIGHTLENS 8.1.1 - IN-APP UPDATES
 
 Gear > Updates checks the public NightLens GitHub releases. Automatic checks

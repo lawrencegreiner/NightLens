@@ -1,0 +1,9 @@
+NIGHTLENS STARTUP ARTWORK
+
+Final asset: Assets/Startup-sky.png
+Generated with the built-in image_gen tool for NightLens; copied unchanged.
+Used only as decorative loading-screen artwork, not an astronomical reference.
+Brand text and progress indicators are drawn live by the application.
+
+Generation prompt:
+Use case: photorealistic-natural. Asset type: wide desktop application loading-screen background, 16:9 landscape. Primary request: an original dark astrophotography observatory scene for NightLens. A realistic small observatory dome on a rocky ridge in the lower-left, a faint deep-red interior glow in its open slit, low silhouetted mountains across the bottom, richly detailed Milky Way rising up the left third into a dark starfield. The center and right should remain dark, calm negative space so a gold NightLens title and live status labels can be drawn by the application. Restrained cinematic night-sky photography, natural astronomical appearance, near-black and midnight blue, subdued warm starlight. No text, no letters, no logos, no UI, no borders, no watermark. This is decorative atmospheric artwork, not an object reference photograph.

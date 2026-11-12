@@ -11,7 +11,10 @@ A Windows 11 desktop astrophotography planner. NightLens brings the observing-ni
 - Smart telescope selection, camera profiles, calibrated gain overrides and app-supported exposure choices.
 - Bortle/SQM site settings, selectable deep-sky catalogs, and CSV catalog imports.
 - Object pictures, altitude trajectories, coordinates, photometry and an offline sky map.
+- Saved observing sites with a dashboard selector, site-specific Bortle/SQM and horizon masks.
+- Interactive skyline editor and Stellarium .hrz imports; target windows exclude obstructions.
 - Windows Location Services with a saved-location fallback.
+- NightLens loading screen with live startup stages.
 - Light, Dark and red Night themes.
 
 Target planning covers the full night and is independent of current weather and the time of day. Exposure, gain, and integration-time suggestions are starting estimates; confirm the settings supported by your equipment.
@@ -83,7 +86,7 @@ The first build requires NuGet access for the pinned C# compiler. Hosted runners
 
 User settings and imported catalogs are stored under `%LOCALAPPDATA%\NightLens`, outside this repository. They are not included in this source ZIP. Image cache files and local settings should not be committed.
 
-Forecast and city-search requests send observing coordinates or city names to Open-Meteo and 7Timer. Survey images are requested from CDS. Catalog calculations and the star map run locally. Weather and seeing are forecasts, not measurements at the observing site. Provider coverage and usage terms apply; the included documentation notes the free Open-Meteo endpoint's personal/noncommercial use.
+Forecast and city-search requests send observing coordinates or city names to Open-Meteo and 7Timer. Color reference images use Pan-STARRS/STScI where suitable, with DSS2 static HiPS tiles from CSIRO/CDS as fallback. Catalog calculations and the star map run locally. Weather and seeing are forecasts, not measurements at the observing site. Provider coverage and usage terms apply; the included documentation notes the free Open-Meteo endpoint's personal/noncommercial use.
 
 ## In-app updates (8.1.0 and later)
 
@@ -109,3 +112,11 @@ A project-wide license has not been selected. Bundled third-party material retai
 - Equipment specification sources: `EquipmentLibrary/Read me.txt` and profile source links.
 
 This repository contains the Windows version only.
+
+## Saved sites and local horizons (8.2.0)
+
+Open **Gear > Saved observing sites** to save the current location or add/edit a travel site. Each site keeps its coordinates, time zone, sky brightness and skyline. Select a site from the dashboard to plan there; choose Windows location to resume automatic positioning. Equipment setups remain available across sites.
+
+Open **Gear > Horizon mask** to click/drag skyline points, fine-tune azimuth/altitude, or import a Stellarium `.hrz` file. North is 0 degrees and azimuth increases eastward. Import supports degrees, radians or gradians, altitude or zenith distance, plus a landscape rotation. Set the matching format/rotation from Stellarium landscape.ini when needed. The altitude floor defaults to 30 degrees. Planning counts only uninterrupted windows of at least 30 minutes above both the floor and skyline, sampled every minute when a mask/custom floor is used. A saved skyline is not applied more than 1 km from its recorded position.
+
+Color images use independently hosted survey services, local tile reprojection, persistent caching and bounded downloads. Real survey plate artifacts and saturated cores may remain. Decorative startup artwork is generated; object reference images are scientific survey data. See `Startup artwork.txt` for artwork provenance.

@@ -1,4 +1,37 @@
-﻿VERSION 7.2 IMAGE AND MAP UPDATE
+VERSION 8.2.0 - CURRENT COLOR IMAGE DELIVERY
+
+Pan-STARRS PS1/STScI: optical i/r/g mapped to RGB for covered fields at
+Dec >= -29.5 degrees and field <= 25 arcmin, up to 1000-pixel cutouts.
+https://outerspace.stsci.edu/display/PANSTARRS/PS1+Image+Cutout+Service
+https://ps1images.stsci.edu/
+The Pan-STARRS1 Surveys were made possible by the Institute for Astronomy,
+University of Hawaii, Pan-STARRS Project Office, Max-Planck Society and its
+participating institutes, Johns Hopkins University, Durham University,
+University of Edinburgh, Queen's University Belfast, Harvard-Smithsonian CfA,
+Las Cumbres Observatory, National Central University of Taiwan, STScI,
+NASA, NSF, University of Maryland, Eotvos Lorand University, Los Alamos National
+Laboratory and the Gordon and Betty Moore Foundation. See service page for
+the full official acknowledgment and survey publications.
+
+Fallback: DSS2 optical color, precomputed HiPS JPEG tiles hosted independently
+at CSIRO/CASDA, then CDS mirrors. Locally reprojected to a 900-pixel TAN field,
+north up/east left, 15-120 arcmin. This replaces the slow remote HiPS2FITS
+rendering request described in the historical notes below.
+https://casda.csiro.au/hips/DSS2/color/properties
+https://alasky.cds.unistra.fr/DSS/DSSColor/properties
+DSS: STScI/NASA, underlying Palomar/UK Schmidt plates; color HiPS CNRS/Unistra,
+ODbL-1.0. See retained CDS DSS2 color properties.txt for upstream credits.
+HiPS specification: https://www.ivoa.net/documents/HiPS/
+
+Successful survey images and tiles are cached locally, not bundled in releases.
+The caption records the actual survey. No AI-generated object images are used.
+Only the decorative loading backdrop is generated (Startup artwork.txt).
+The new local horizon model supersedes the older statement below that terrain
+is not modeled: user-entered skyline heights now restrict target windows.
+
+HISTORICAL SOURCE NOTES FOLLOW
+
+VERSION 7.2 IMAGE AND MAP UPDATE
 
 Deep-sky images: CDS/P/DSS2/color, a color composite of red and blue DSS2 data.
 1200 x 1200 pixel cutouts from CDS HiPS2FITS; reference field 15–120 arcminutes.
